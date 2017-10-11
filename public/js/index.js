@@ -201,7 +201,7 @@ $(document).ready(function(){
             quantity: quantity,
             price: parseFloat(price),
             stop_price: stop_price,
-            limit_price: limit_Price,
+            limit_price: limit_price,
             time_in_force: time_in_force,
             expiration_date: expiration_date,
             want_asset: front_asset,

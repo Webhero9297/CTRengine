@@ -39,6 +39,7 @@ class OrderController extends Controller
       $want_asset = request()->get('want_asset');
 
       $order_date = Common::udate('Y-m-d H:i:s:u');
+      exit;
       $orderModel = new OrderBookList();
       $order_id = time('Y-m-d\TH:i:s\Z');
       $order_date = Common::udate('Y-m-d H:i:s.u');
