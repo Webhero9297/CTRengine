@@ -36,12 +36,12 @@ class OrderController extends Controller
       $order_data['order_type'] = request()->get('order_type');
       $order_data['quantity'] = request()->get('quantity');
       $order_data['price'] = request()->get('price');
-      $order_data['limit_price'] = request()->get('limit_price');
-      $order_data['stop_price'] = request()->get('stop_price');
+      $order_data['limit_price'] = floatval(request()->get('limit_price'));
+      $order_data['stop_price'] = floatval(request()->get('stop_price'));
       $order_data['offer_asset'] = request()->get('offer_asset');
       $order_data['want_asset'] = request()->get('want_asset');
-      $order_data['expiration_date'] = request()->get('expiration_date');
-      $order_data['time_in_force'] = request()->get('time_in_force');
+      if (request()->get('expiration_date') != 'NONE') $order_data['expiration_date'] = request()->get('expiration_date');
+      if (request()->get('time_in_force') != 'NONE') $order_data['time_in_force'] = request()->get('time_in_force');
       if ( $order_data['order_type'] == 'market' || ( $order_data['order_type']=='limit' && $order_data['time_in_force'] == 'IOC') )
         $order_data['order_status'] = 'open';
       else
@@ -52,10 +52,13 @@ class OrderController extends Controller
       
       $order_data['order_id'] = time('Y-m-d\TH:i:s\Z');
 
-      var_dump(print_r($order_data, true));exit;
+      // var_dump(print_r($order_data, true));exit;
+      $orderModel = new OrderBookModel();
+      $orderModel->storeNewOrder($order_data);
+      exit;
       $order_date = Common::udate('Y-m-d H:i:s.u');
 
-      $basemodel = new OrderBookModel();
+      
 
       $orderModel->order_id = $order_id;
       $orderModel->customer_id = $customer_id;
