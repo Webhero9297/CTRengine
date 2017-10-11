@@ -128,7 +128,7 @@ $(document).ready(function(){
     });
     
     $(".stateful_btn").click(function(){
-        var  quantity, price, stop_price = '0', limit_price, expiration_date, time_in_force;
+        var  quantity, price, stop_price = '0', limit_price = 'NONE', expiration_date = 'NONE', time_in_force = 'NONE';
         get_orderstate();
         if (order_type == "market") {
             price = $('.market_stat .num').html();
@@ -141,6 +141,7 @@ $(document).ready(function(){
             } else if (order_side == "sell") {
                 quantity = $('.market_order .amount').val();
             }
+            
         } else if (order_type == "limit") {
             price = $('.limit_order .limit_price').val();
             quantity = $('.limit_order .amount').val();
