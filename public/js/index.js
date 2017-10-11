@@ -128,7 +128,7 @@ $(document).ready(function(){
     });
     
     $(".stateful_btn").click(function(){
-        var  quantity, price, stop_price = '0', limit_price = 'NONE', expiration_date = 'NONE', time_in_force = 'NONE';
+        var  quantity, price, stop_price = 'NONE', limit_price = 'NONE', expiration_date = 'NONE', time_in_force = 'NONE';
         get_orderstate();
         if (order_type == "market") {
             price = $('.market_stat .num').html();
@@ -154,6 +154,7 @@ $(document).ready(function(){
                 return;
             }
             limit_price = $('.limit_order .limit_price').val();
+            time_in_force = $('#case').val();
         } else if (order_type == "stop") {
             price = $('.market_stat .num').html();
             stop_price = $(".stop_order .stop_price").val();
@@ -189,7 +190,7 @@ $(document).ready(function(){
                 quantity = $('.stoplimit_order .amount').val();
             }
         }
-        time_in_force = $('#case').val();
+        
         if (time_in_force == "DAY") {
             expiration_date = 1;
         } else if (time_in_force == "GTDT") {
@@ -359,8 +360,8 @@ $(document).ready(function(){
         var offer_asset = (parseFloat($(".back_currency_price").html()) == 0 ) ? '' : $(".back_currency_price").html();
         $("#front_asset_value").addClass('text-right');
         $("#back_asset_value").addClass('text-right');
-        $("#front_asset_value").val(want_asset);
-        $("#back_asset_value").val(offer_asset);
+        // $("#front_asset_value").val(want_asset);
+        // $("#back_asset_value").val(offer_asset);
         /*** End */
         $(".deposit_bg").css('display','block');
 
@@ -371,8 +372,8 @@ $(document).ready(function(){
         var offer_asset = (parseFloat($(".back_currency_price").html()) == 0 ) ? '' : $(".back_currency_price").html();
         $("#front_asset_value").addClass('text-right');
         $("#back_asset_value").addClass('text-right');
-        $("#front_asset_value").val(want_asset);
-        $("#back_asset_value").val(offer_asset);
+        // $("#front_asset_value").val(want_asset);
+        // $("#back_asset_value").val(offer_asset);
         $(".deposit_bg").css('display','block');
 
         flag = "withdraw";
@@ -455,6 +456,8 @@ function init_time() {
 
 function date_format(date_str, time_str) {
     var tmp = date_str.split('-');
+    var time_tmp = time_str.split(':');
+    if (parseInt(time_tmp[0]) < 10 )    time_str = '0' + time_str;
     var result = tmp[2] + '-' + tmp[1] + '-' + tmp[0] + ' ' + time_str + ':00';
     return result;
 }
@@ -571,11 +574,11 @@ function set_asset(){
 }
 
 function set_reverse_asset(){
-    $('.market_order .back_asset').html(front_asset);
-    $('.market_order .order_total .front_asset').html(back_asset);
+    // $('.market_order .back_asset').html(front_asset);
+    // $('.market_order .order_total .front_asset').html(back_asset);
 
-    $('.stop_order .amount_section .back_asset').html(front_asset);
-    $('.stop_order .order_total .front_asset').html(back_asset);
+    // $('.stop_order .amount_section .back_asset').html(front_asset);
+    // $('.stop_order .order_total .front_asset').html(back_asset);
 }
 
 function get_tradeprice(){
