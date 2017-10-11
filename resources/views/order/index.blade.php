@@ -221,7 +221,7 @@
                         </div>
                         <div class="order_total">
                             <div>
-                                <b>Total</b>
+                                <span><b>Total</b></span>
                                 <span class='front_asset'></span>
                                 <b>≈</b>
                             </div>
