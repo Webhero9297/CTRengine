@@ -12,3 +12,4 @@ yarn-error.log
 .env
 /nbproject/private/
 /nbproject
+.DS_Store

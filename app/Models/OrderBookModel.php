@@ -68,7 +68,8 @@ class OrderBookModel extends BaseModel
             }
             $sqlString = implode(';', $sqls);
         }
-        DB::connection()->getPdo()->exec($sqlString);
+        if (!empty($sqlString))
+            DB::connection()->getPdo()->exec($sqlString);
     }
     public function PlaceSellAsk($customer_id, $price, $expiration_date) {
         $tbName = $this->getTableName();
@@ -104,7 +105,8 @@ class OrderBookModel extends BaseModel
             }
             $sqlString = implode(';', $sqls);
         }
-        DB::connection()->getPdo()->exec($sqlString);
+        if (!empty($sqlString))
+            DB::connection()->getPdo()->exec($sqlString);
     }
     public function getData() {
         return $this->where('order_type', 'limit')->get();
