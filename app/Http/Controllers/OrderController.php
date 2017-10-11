@@ -29,20 +29,33 @@ class OrderController extends Controller
 
 
     public function addOrder() {
-      $customer_id = request()->get('customer_id');
-      $order_side = request()->get('order_side');
-      $order_type = request()->get('order_type');
-      $quantity = request()->get('quantity');
-      $price = request()->get('price');
-      $stop_price = request()->get('stop_price');
-      $offer_asset = request()->get('offer_asset');
-      $want_asset = request()->get('want_asset');
+      date_default_timezone_set("UTC");
+      $order_data = array();
+      $order_data['customer_id'] = \Auth::user()->id;
+      $order_data['order_side'] = request()->get('order_side');
+      $order_data['order_type'] = request()->get('order_type');
+      $order_data['quantity'] = request()->get('quantity');
+      $order_data['price'] = request()->get('price');
+      $order_data['limit_price'] = request()->get('limit_price');
+      $order_data['stop_price'] = request()->get('stop_price');
+      $order_data['offer_asset'] = request()->get('offer_asset');
+      $order_data['want_asset'] = request()->get('want_asset');
+      $order_data['expiration_date'] = request()->get('expiration_date');
+      $order_data['time_in_force'] = request()->get('force_in_force');
+      if ( $order_data['order_type'] == 'market' || ( $order_data['order_type']=='limit' && $order_data['time_in_force'] == 'IOC') )
+        $order_data['order_status'] = 'open';
+      else
+        $order_data['order_status'] = 'pending';
+      $order_data['order_date'] = Common::udate('Y-m-d H:i:s:u');
+      $order_data['created_at'] = date('Y-m-d H:i:s');
+      $order_data['updated_at'] = date('Y-m-d H:i:s');
+      
+      $order_data['order_id'] = time('Y-m-d\TH:i:s\Z');
 
-      $order_date = Common::udate('Y-m-d H:i:s:u');
-      exit;
-      $orderModel = new OrderBookList();
-      $order_id = time('Y-m-d\TH:i:s\Z');
+      var_dump(print_r($order_data, true));exit;
       $order_date = Common::udate('Y-m-d H:i:s.u');
+
+      $basemodel = new OrderBookModel();
 
       $orderModel->order_id = $order_id;
       $orderModel->customer_id = $customer_id;
