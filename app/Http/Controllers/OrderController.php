@@ -41,12 +41,12 @@ class OrderController extends Controller
       $order_data['offer_asset'] = request()->get('offer_asset');
       $order_data['want_asset'] = request()->get('want_asset');
       $order_data['expiration_date'] = request()->get('expiration_date');
-      $order_data['time_in_force'] = request()->get('force_in_force');
+      $order_data['time_in_force'] = request()->get('time_in_force');
       if ( $order_data['order_type'] == 'market' || ( $order_data['order_type']=='limit' && $order_data['time_in_force'] == 'IOC') )
         $order_data['order_status'] = 'open';
       else
         $order_data['order_status'] = 'pending';
-      $order_data['order_date'] = Common::udate('Y-m-d H:i:s:u');
+      $order_data['order_date'] = Common::udate('Y-m-d H:i:s.u');
       $order_data['created_at'] = date('Y-m-d H:i:s');
       $order_data['updated_at'] = date('Y-m-d H:i:s');
       
