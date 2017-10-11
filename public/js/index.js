@@ -143,7 +143,7 @@ $(document).ready(function(){
             }
             
         } else if (order_type == "limit") {
-            price = $('.limit_order .limit_price').val();
+            price = $('.market_stat .num').html();
             quantity = $('.limit_order .amount').val();
             if ($('.limit_order .amount').val() == ''){
                 alert("input amount");
@@ -153,6 +153,7 @@ $(document).ready(function(){
                 alert("input limit price");
                 return;
             }
+            limit_price = $('.limit_order .limit_price').val();
         } else if (order_type == "stop") {
             price = $('.market_stat .num').html();
             stop_price = $(".stop_order .stop_price").val();
