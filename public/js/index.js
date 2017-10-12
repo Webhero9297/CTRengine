@@ -144,9 +144,8 @@ $(document).ready(function(){
                 $('.div_msg').css('display','block');
                 var interval1 = window.setInterval(function () {
                     $( ".div_msg" ).animate({
-                        opacity: 0,
-                    }, 1000, function() {
-                    });
+                            opacity: 0,
+                        }, 1000);
                     clearInterval(interval1);
                 }, 2000);
                 return;
@@ -159,8 +158,7 @@ $(document).ready(function(){
                 var interval2 = window.setInterval(function () {
                     $( ".div_msg" ).animate({
                         opacity: 0,
-                    }, 1000, function() {
-                    });
+                    }, 1000);
                     clearInterval(interval2);
                 }, 2000);
                 return;
