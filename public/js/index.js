@@ -136,20 +136,47 @@ $(document).ready(function(){
     $(".stateful_btn").click(function(){
         var  quantity, price, stop_price = 'NONE', limit_price = 'NONE', expiration_date = 'NONE', time_in_force = 'NONE';
         get_orderstate();
+
+        if (order_side == "buy"){
+            if (parseFloat($('.back_currency_price').html()) == 0){
+                $('.msg').html("You can't buy " + front_asset +" because " + back_asset + " balance is 0.");
+                $('.div_msg').css('opacity','1');
+                $('.div_msg').css('display','block');
+                var interval1 = window.setInterval(function () {
+                    $( ".div_msg" ).animate({
+                        opacity: 0,
+                    }, 1000, function() {
+                    });
+                    clearInterval(interval1);
+                }, 2000);
+                return;
+            }
+        } else {
+            if (parseFloat($('.front_currency_price').html()) == 0){
+                $('.msg').html("You can't sell " + front_asset + " because " + front_asset + " balance is 0.");
+                $('.div_msg').css('opacity','1');
+                $('.div_msg').css('display','block');
+                var interval2 = window.setInterval(function () {
+                    $( ".div_msg" ).animate({
+                        opacity: 0,
+                    }, 1000, function() {
+                    });
+                    clearInterval(interval2);
+                }, 2000);
+                return;
+            }
+        }
+
+        price = $('.market_stat .num').html();
         if (order_type == "market") {
-            price = $('.market_stat .num').html();
+            
             if ($('.market_order .amount').val() == ''){
                 alert("input amount");
                 return;
             }
-            if (order_side == "buy") {
-                quantity = parseFloat($('.market_order .amount').val()) / parseFloat(price);
-            } else if (order_side == "sell") {
-                quantity = $('.market_order .amount').val();
-            }
+            quantity = $('.market_order .amount').val();
             
         } else if (order_type == "limit") {
-            price = $('.market_stat .num').html();
             quantity = $('.limit_order .amount').val();
             if ($('.limit_order .amount').val() == ''){
                 alert("input amount");
@@ -160,48 +187,46 @@ $(document).ready(function(){
                 return;
             }
             limit_price = $('.limit_order .limit_price').val();
-            time_in_force = $('#case').val();
+            time_in_force = $('.limit_order #case').val();
+            if (time_in_force == "DAY") {
+                expiration_date = 1;
+            } else if (time_in_force == "GTDT") {
+                expiration_date = date_format($('.limit_order #calendar').val(), $('.limit_order #cancel_time').val());
+            }
         } else if (order_type == "stop") {
-            price = $('.market_stat .num').html();
             stop_price = $(".stop_order .stop_price").val();
             limit_price = 'NONE';
             if ($('.stop_order .amount').val() == ''){
                 alert("input amount");
                 return;
             }
-            if ($('.stop_price').val() == ''){
+            if ($('.stop_order .stop_price').val() == ''){
                 alert("input stop price");
                 return;
             }
-            if (order_side == "buy") {
-                quantity = parseFloat($('.stop_order .amount').val()) / parseFloat(price);
-            } else if (order_side == "sell") {
-                quantity = $('.stop_order .amount').val();
-            }
+            quantity = $('.stop_order .amount').val();
         } else if (order_type == "stoplimit") {
-            price = $('.market_stat .num').html();
             stop_price = $(".stoplimit_order .stop_price").val();
             limit_price = $('.stoplimit_order .limit_price').val();
             if ($('.stoplimit_order .amount').val() == ''){
                 alert("input amount");
                 return;
             }
-            if ($('.stop_price').val() == ''){
+            if ($('stoplimit_order .stop_price').val() == ''){
                 alert("input stop price");
                 return;
             }
-            if (order_side == "buy") {
-                quantity = parseFloat($('.stoplimit_order .amount').val()) / parseFloat(price);
-            } else if (order_side == "sell") {
-                quantity = $('.stoplimit_order .amount').val();
+            quantity = $('.stoplimit_order .amount').val();
+
+            time_in_force = $('.stoplimit_order #case').val();
+            if (time_in_force == "DAY") {
+                expiration_date = 1;
+            } else if (time_in_force == "GTDT") {
+                expiration_date = date_format($('.stoplimit_order #calendar').val(), $('.stoplimit_order #cancel_time').val());
             }
         }
+
         
-        if (time_in_force == "DAY") {
-            expiration_date = 1;
-        } else if (time_in_force == "GTDT") {
-            expiration_date = date_format($('#calendar').val(), $('#cancel_time').val());
-        }
 
         var post_param = {
             customer_id: 1,
@@ -340,11 +365,18 @@ $(document).ready(function(){
         $('.open_orders_panel').css('display','flex');
     });
     
-    $('#case').on('change', function() {
+    $('.limit_order #case').on('change', function() {
         if (this.value  == "GTDT"){
-            $(".section.cancel").css("display","block");
+            $(".limit_order .section.cancel").css("display","block");
         } else {
-            $(".section.cancel").css("display","none");
+            $(".limit_order .section.cancel").css("display","none");
+        }
+    })
+    $('.stoplimit_order #case').on('change', function() {
+        if (this.value  == "GTDT"){
+            $(".stoplimit_order .section.cancel").css("display","block");
+        } else {
+            $(".stoplimit_order .section.cancel").css("display","none");
         }
     })
 
@@ -409,6 +441,9 @@ $(document).ready(function(){
 
     });
 
+    // Calendar
+    
+
     init_asset_balance();
     init_time();
 
@@ -453,7 +488,11 @@ function init_time() {
         }
     }
     $.each(items, function (i, item) {
-        $('#cancel_time').append($('<option>', { 
+        $('.limit_order #cancel_time').append($('<option>', { 
+            value: item,
+            text : item 
+        }));
+        $('.stoplimit_order #cancel_time').append($('<option>', { 
             value: item,
             text : item 
         }));
@@ -461,10 +500,9 @@ function init_time() {
 }
 
 function date_format(date_str, time_str) {
-    var tmp = date_str.split('-');
     var time_tmp = time_str.split(':');
     if (parseInt(time_tmp[0]) < 10 )    time_str = '0' + time_str;
-    var result = tmp[2] + '-' + tmp[1] + '-' + tmp[0] + ' ' + time_str + ':00';
+    var result = date_str + ' ' + time_str + ':00';
     return result;
 }
 
@@ -651,8 +689,14 @@ $(document).ready(function(){
 });
 
 addEventListener('DOMContentLoaded', function () {
-	pickmeup('#calendar', {
-		position       : 'right',
-		hide_on_select : true
-	});
+    pickmeup('.limit_order #calendar', {
+        position       : 'right',
+        hide_on_select : true,
+        format: 'Y-m-d'
+    });
+    pickmeup('.stoplimit_order #calendar', {
+        position       : 'right',
+        hide_on_select : true,
+        format: 'Y-m-d'
+    });
 });

@@ -48,6 +48,7 @@ ul {
 .row {
     margin: 0px;
     float: left;
+    width: 100%;
 }
 input[type='number'] {
     -moz-appearance:textfield;
@@ -63,7 +64,16 @@ input::-webkit-inner-spin-button {
 #app, .content {
     height: 100%;
 }
-
+.navbar-nav > li > a {
+    padding: 7px 10px;
+    font-size: 14PX;
+    font-weight: bold;
+}
+.div_msg {
+    margin-top: 10px;
+    color: rgb(253, 45, 47);
+    display: none;
+}
 /* loading */
 
 #curtain {
@@ -146,11 +156,20 @@ input::-webkit-inner-spin-button {
     height: 30px;
     padding: 4px 20px;
 }
+.logo {
+    float: left;
+    margin-top: 1px;
+}
+.logo img {
+    width: 20px;
+    height: 20px;
+}
 .erc_txt {
     float: left;
     position: relative;
     font-weight: bold;
     margin-top: 4px;
+    margin-left: 10px;
 }
 .erc_toggle {
     float: left;
@@ -165,6 +184,10 @@ input::-webkit-inner-spin-button {
 }
 .etherdelta iframe {
     border: 0px;
+}
+.dropdown-toggle {
+    padding: 0;
+    margin-top: -8px;
 }
 /* header */
 

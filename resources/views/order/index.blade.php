@@ -30,9 +30,36 @@
     <script src="{{ asset('./js/ajax.js') }}"></script>
     <div class="banner">
         <div class="row section">
-            <div class="erc_txt">ERC2.0</div>
+            <div class="logo"><img src="{{ asset('images/centra logo.png') }}"/></div>
+            <div class="erc_txt">Centra Tech ERC2.0</div>
             <div class="erc_toggle">
                 <input type="checkbox" data-toggle="toggle" data-size="mini" id="toggle_erc20" onchange='doOnERC20Toggle()'>
+            </div>
+            <div style="float:right;">
+                    <ul class="nav navbar-nav navbar-right" style="height:20px;">
+                        <!-- Authentication Links -->
+                        @if (!Auth::guest())
+                            <li class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            <!-- {{ csrf_field() }} -->
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
             </div>
         </div>
     </div>
@@ -220,7 +247,7 @@
                         </div>
                         <div class="order_total">
                             <div>
-                                <span class='result'>You will pay</span>
+                                <span class='result'>You will pay.</span>
                                 <span class='back_asset'></span>
                                 <b>≈</b>
                             </div>
@@ -320,6 +347,25 @@
                                 <span class='back_asset'></span>
                             </div>
                         </div>
+                        <div class="advanced_section">
+                            <div class="advanced_content">
+                                <div class="section">
+                                    <div class="header">Time in Force Policy</div>
+                                    <select id="case">
+                                        <option value="GTC">Good Til Cancelled</option>
+                                        <option value="IOC">Immediate or Cancel</option>
+                                        <option value="FOK">Fill or Kill</option>
+                                        <option value="DAY">Day</option>
+                                        <option value="GTDT">Good Till Date/Time</option>
+                                    </select>
+                                </div>
+                                <div class="section cancel">
+                                    <div class="header">Cancel After</div>
+                                    <p><input type="text" id="calendar" /></P>
+                                    <select id="cancel_time"></select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="order_total">
                         <div>
                             <b>Total</b>
@@ -333,6 +379,9 @@
                     </div>
                     
                     <button type="button" class="stateful_btn">Place buy order</button>
+                    <div class="div_msg"> 
+                        <span class="msg"></span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -534,5 +583,5 @@
             </form>
         </div>
     </div>
-
+    <script src="{{ asset('./js/app.js') }}"></script>
 @endsection
