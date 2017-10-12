@@ -37,4 +37,9 @@ class AssetBalance extends Model
         if ( is_null($data) ) return 0;
         return $data->balance;
     }
+    public function getCustomerAssetBalanceInfo( $customer_id, $asset ) {
+        $data = $this->where('customer_id', $customer_id)->where('asset', $asset)->first();
+        if ( is_null($data) ) return array('asset_balance'=>0, 'frozen_balance'=>0);
+        return array('asset_balance'=>$data->balance, 'frozen_balance'=>$data->frozen_balance);
+    }
 }

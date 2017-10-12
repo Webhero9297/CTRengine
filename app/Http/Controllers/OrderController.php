@@ -40,7 +40,8 @@ class OrderController extends Controller
       $order_data['stop_price'] = floatval(request()->get('stop_price'));
       $order_data['offer_asset'] = request()->get('offer_asset');
       $order_data['want_asset'] = request()->get('want_asset');
-      if (request()->get('expiration_date') != 'NONE') $order_data['expiration_date'] = request()->get('expiration_date');
+      if (request()->get('expiration_date') != 'NONE' && request()->get('expiration_date') !=1) $order_data['expiration_date'] = request()->get('expiration_date');
+      if ( request()->get('expiration_date') == 1 )  $order_data['expiration_date'] = date("Y-m-d 23:59:59");
       if (request()->get('time_in_force') != 'NONE') $order_data['time_in_force'] = request()->get('time_in_force');
       if ( $order_data['order_type'] == 'market' || ( $order_data['order_type']=='limit' && $order_data['time_in_force'] == 'IOC') )
         $order_data['order_status'] = 'open';
@@ -52,6 +53,21 @@ class OrderController extends Controller
       
       $order_data['order_id'] = time('Y-m-d\TH:i:s\Z');
 
+      $assetModel = new AssetBalance();
+      if ( $order_data['order_side'] == 'buy' ) {
+        $assetData = $assetModel->getCustomerAssetBalanceInfo($order_data['customer_id'], $order_data['offer_asset']);
+        $assetBalance = $assetData['asset_balance']-$assetData['frozen_balance'];
+        if ( $assetBalance<$order_data['quantity']*$order_data['price'] ) {
+          $order_data['order_status'] = 'rejected';
+        }
+      }
+      else {
+        $assetData = $assetModel->getCustomerAssetBalanceInfo($order_data['customer_id'], $order_data['want_asset']);
+        $assetBalance = $assetData['asset_balance']-$assetData['frozen_balance'];
+        if ( $assetBalance<$order_data['quantity'] ) {
+          $order_data['order_status'] = 'rejected';
+        }
+      }
       // var_dump(print_r($order_data, true));exit;
       $orderModel = new OrderBookModel();
       $orderModel->storeNewOrder($order_data);
