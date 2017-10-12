@@ -53,6 +53,10 @@ class OrderController extends Controller
       
       $order_data['order_id'] = time('Y-m-d\TH:i:s\Z');
 
+      $orderTransModel = new OrderTransaction();
+      $trade_price = $orderTransModel->getTradePrice($order_data['want_asset'], $order_data['offer_asset']);
+
+      $order_data['price'] = $trade_price;
       $assetModel = new AssetBalance();
       if ( $order_data['order_side'] == 'buy' ) {
         $assetData = $assetModel->getCustomerAssetBalanceInfo($order_data['customer_id'], $order_data['offer_asset']);
@@ -68,9 +72,16 @@ class OrderController extends Controller
           $order_data['order_status'] = 'rejected';
         }
       }
-      // var_dump(print_r($order_data, true));exit;
+
       $orderModel = new OrderBookModel();
       $orderModel->storeNewOrder($order_data);
+
+      if ( $order_data['order_side'] == 'buy' ) {
+        $orderModel->PlaceBuyBid($order_data['customer_id'], $trade_price, date('Y-m-d H:i:s'));
+      }
+      else {
+        $orderModel->PlaceSellAsk($order_data['customer_id'], $trade_price, date('Y-m-d H:i:s'));
+      }
       exit;
       $order_date = Common::udate('Y-m-d H:i:s.u');
 

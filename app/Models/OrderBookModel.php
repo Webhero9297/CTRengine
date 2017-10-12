@@ -36,7 +36,7 @@ class OrderBookModel extends BaseModel
     */
     public function PlaceBuyBid($customer_id, $price, $expiration_date) {
         $tbName = $this->getTableName();
-        $buy_data = DB::table($tbName)->where('order_side', 'buy')->where('customer_id', $customer_id)->where('order_status', 'pending')->get()->toArray();
+        $buy_data = DB::table($tbName)->where('order_side', 'buy')/*->where('customer_id', '<>',$customer_id)*/->where('order_status', 'pending')->get()->toArray();
         $sqls = array();
         $sqlString = "";
         if ($buy_data) {
@@ -73,7 +73,7 @@ class OrderBookModel extends BaseModel
     }
     public function PlaceSellAsk($customer_id, $price, $expiration_date) {
         $tbName = $this->getTableName();
-        $buy_data = DB::table($tbName)->where('order_side', 'sell')->where('customer_id', $customer_id)->where('order_status', 'pending')->get()->toArray();
+        $buy_data = DB::table($tbName)->where('order_side', 'sell')/*->where('customer_id', '<>',$customer_id)*/->where('order_status', 'pending')->get()->toArray();
         $sqls = array();
         $sqlString = "";
         if ($buy_data) {

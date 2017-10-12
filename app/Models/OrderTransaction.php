@@ -56,10 +56,10 @@ class OrderTransaction extends Model
       $this->insert($row_arr);
       return true;
     }
-    public function getTradePrice($offer_asset, $want_asset) {
+    public function getTradePrice($want_asset,$offer_asset) {
       $data = DB::table($this->table)->select('trade_price')->where('offer_asset', $offer_asset)->where('want_asset', $want_asset)->orderBy('updated_at', 'desc')->first();
       if ( is_null($data) ) {
-        $price = Common::changellyAPI($offer_asset, $want_asset);
+        $price = Common::changellyAPI($want_asset, $offer_asset);
         return floatval($price);
       }
       return $data->trade_price;

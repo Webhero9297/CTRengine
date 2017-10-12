@@ -38,11 +38,11 @@ class Common
       var_dump(print_r($rate_data, true));exit;
       curl_close($ch);
     }
-    public static function changellyAPI($offer_asset, $want_asset) {
+    public static function changellyAPI($want_asset, $offer_asset) {
       $apiKey = '59201ddd08c849228dcd6bacf4cf4279';
       $apiSecret ='57a1d9376a85b231b3ab8df0afb7c7119976a9c34661cedbdc83c8fb21304bbe';
       $apiUrl = 'https://api.changelly.com';
-      $message = json_encode(array('jsonrpc'=>'2.0', 'id'=>1, 'method'=>'getExchangeAmount', 'params'=>array('from'=>strtolower($offer_asset),'to'=>strtolower($want_asset),'amount'=>1)));
+      $message = json_encode(array('jsonrpc'=>'2.0', 'id'=>1, 'method'=>'getExchangeAmount', 'params'=>array('from'=>strtolower($want_asset),'to'=>strtolower($offer_asset),'amount'=>1)));
       $sign = hash_hmac('sha512', $message, $apiSecret);
       $requestHeaders = [
           'api-key:' . $apiKey,
@@ -56,9 +56,7 @@ class Common
       curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
       curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-      //var_dump(print_r($ch, true));exit;
       $response = json_decode(curl_exec($ch));
-      // var_dump(print_r($response, true));exit;
       curl_close($ch);
       return $response->result;
     }
