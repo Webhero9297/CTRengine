@@ -56,11 +56,11 @@ class OrderController extends Controller
       $orderTransModel = new OrderTransaction();
       $trade_price = $orderTransModel->getTradePrice($order_data['want_asset'], $order_data['offer_asset']);
 
-      $order_data['price'] = $trade_price;
       $assetModel = new AssetBalance();
       if ( $order_data['order_side'] == 'buy' ) {
         $assetData = $assetModel->getCustomerAssetBalanceInfo($order_data['customer_id'], $order_data['offer_asset']);
         $assetBalance = $assetData['asset_balance']-$assetData['frozen_balance'];
+     
         if ( $assetBalance<$order_data['quantity']*$order_data['price'] ) {
           $order_data['order_status'] = 'rejected';
         }
@@ -82,6 +82,8 @@ class OrderController extends Controller
       else {
         $orderModel->PlaceSellAsk($order_data['customer_id'], $trade_price, date('Y-m-d H:i:s'));
       }
+
+      $orderModel->OrderMatch($order_data);
       exit;
       $order_date = Common::udate('Y-m-d H:i:s.u');
 
@@ -214,15 +216,15 @@ class OrderController extends Controller
     }
 
     public function makeFill() {
-$basemodel = new OrderBookModel(2017,'09');
-$data = DB::table('orderbook')->where('order_type', 'limit')->get()->toArray();
+      $basemodel = new OrderBookModel(2017,'09');
+      $data = DB::table('orderbook')->where('order_type', 'limit')->get()->toArray();
 
-$basemodel->PlaceBuyBid(1, 3600.2, '2017-10-11 22:22;22');
-      dd( $data);
+      $basemodel->PlaceBuyBid(1, 3600.2, '2017-10-11 22:22;22');
+            dd( $data);
 
-$common = new Common();
-dd(Common::udate('Y-m-d H:i:s.u'));
-dd( $common->udate('Y-m-d H:i:s.u') );
+      $common = new Common();
+      dd(Common::udate('Y-m-d H:i:s.u'));
+      dd( $common->udate('Y-m-d H:i:s.u') );
       $id = 46;
       $ret_arr = array();
       $orderModel = new OrderBook();
@@ -314,10 +316,10 @@ dd( $common->udate('Y-m-d H:i:s.u') );
     public function getTradePrice($product) {
       $tmp = explode('-', $product);
       header('Content-type:application/json');
-      $offer_asset = $tmp[0];
-      $want_asset = $tmp[1];
+      $offer_asset = $tmp[1];
+      $want_asset = $tmp[0];
       $model = new OrderTransaction();
-      $ret_data['result']['trade_price'] = $model->getTradePrice($offer_asset, $want_asset);
+      $ret_data['result']['trade_price'] = $model->getTradePrice($want_asset, $offer_asset);
       echo json_encode($ret_data);
     }
 
@@ -332,9 +334,14 @@ dd( $common->udate('Y-m-d H:i:s.u') );
     */
     public function getOpenOrders($product) {
       header('Content-type:application/json');
-      $orderModel = new OrderBookList();
+      // $orderModel = new OrderBookList();
+      $customer_id = \Auth::user()->id;
+      $tmp = explode('-', $product);
+      $offer_asset = $tmp[1];
+      $want_asset = $tmp[0];
+      $orderModel = new OrderBookModel();
       $ret_arr = array();
-      $ret_arr = $orderModel->getOpenOrderList($product);
+      $ret_arr = $orderModel->getOpenOrderData($customer_id, $want_asset, $offer_asset);
       echo json_encode($ret_arr);
     }
     /**
@@ -351,8 +358,13 @@ dd( $common->udate('Y-m-d H:i:s.u') );
     public function getFilledList($product) {
       header('Content-type:application/json');
       $resp_arr = array();
-      $orderModel = new OrderBookList();
-      $resp_arr = $orderModel->getFilledOrderList($product);
+      // $orderModel = new OrderBookList();
+      $customer_id = \Auth::user()->id;
+      $tmp = explode('-', $product);
+      $offer_asset = $tmp[1];
+      $want_asset = $tmp[0];
+      $orderModel = new OrderBookModel();
+      $resp_arr = $orderModel->getFilledOrderList($customer_id, $want_asset, $offer_asset);
       echo json_encode($resp_arr);
     }
     /**
@@ -374,14 +386,15 @@ dd( $common->udate('Y-m-d H:i:s.u') );
     public function getOrderBookList($product) {
       header('Content-type:application/json');
       $aggregation = request()->get('aggregation');
-      $customer_id = 2;
+      $customer_id = \Auth::user()->id;
       $tmp = explode('-', $product);
-      $offer_asset = $tmp[0];
-      $want_asset = $tmp[1];
+      $offer_asset = $tmp[1];
+      $want_asset = $tmp[0];
       $resp_arr = array();
-      $orderModel = new OrderBookList();
-      $resp_arr = array('bid'=>$orderModel->getOrderBookList($customer_id, $offer_asset, $want_asset, 'buy', $aggregation),
-                        'ask'=>$orderModel->getOrderBookList($customer_id, $offer_asset, $want_asset, 'sell', $aggregation));
+      // $orderModel = new OrderBookList();
+      $orderModel = new OrderBookModel();
+      $resp_arr = array('bid'=>$orderModel->getOrderBookList($customer_id, $want_asset, $offer_asset, 'buy', $aggregation),
+                        'ask'=>$orderModel->getOrderBookList($customer_id, $want_asset, $offer_asset, 'sell', $aggregation));
       echo json_encode($resp_arr);
     }
 

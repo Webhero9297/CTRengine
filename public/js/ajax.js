@@ -40,6 +40,7 @@ function getOrderData() {
     }
     $.get('getorderbooklist/' + front_asset + '-' + back_asset + '?aggregation=' + aggregation_values[aggregation_num], function (resp) {
         var data = typeof resp == 'string' ? JSON.parse(resp) : resp;
+        console.log(data);
         var asks = data.ask;
         var bids = data.bid;
 
