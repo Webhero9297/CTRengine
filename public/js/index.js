@@ -11,15 +11,11 @@ $(document).ready(function(){
     set_asset();  
     get_tradeprice();
 
-    $( ".header .product_selection h4" ).click(
-        function(){
+    $( ".header .product_selection h4" ).click(function(){
             $(".header .marketinfo .menu_entry").css('color','rgba(81,141,202,.8)');
-        },
-        function(){
         }
     );
-    $( ".header .product_selection h4" ).click(
-        function() {
+    $( ".header .product_selection h4" ).click(function() {
             if ($( ".header .product_list" ).css('display') == 'none'){
                 $( ".header .product_list" ).css('display', 'block');
             } else {
@@ -130,7 +126,6 @@ $(document).ready(function(){
             $('.market_order .result').html("You will receive.");
         }
 
-        set_reverse_asset();
     });
     
     $(".stateful_btn").click(function(){
@@ -396,8 +391,6 @@ $(document).ready(function(){
         var offer_asset = (parseFloat($(".back_currency_price").html()) == 0 ) ? '' : $(".back_currency_price").html();
         $("#front_asset_value").addClass('text-right');
         $("#back_asset_value").addClass('text-right');
-        // $("#front_asset_value").val(want_asset);
-        // $("#back_asset_value").val(offer_asset);
         /*** End */
         $(".deposit_bg").css('display','block');
 
@@ -408,8 +401,6 @@ $(document).ready(function(){
         var offer_asset = (parseFloat($(".back_currency_price").html()) == 0 ) ? '' : $(".back_currency_price").html();
         $("#front_asset_value").addClass('text-right');
         $("#back_asset_value").addClass('text-right');
-        // $("#front_asset_value").val(want_asset);
-        // $("#back_asset_value").val(offer_asset);
         $(".deposit_bg").css('display','block');
 
         flag = "withdraw";
@@ -616,11 +607,11 @@ function set_asset(){
 }
 
 function set_reverse_asset(){
-    // $('.market_order .back_asset').html(front_asset);
-    // $('.market_order .order_total .front_asset').html(back_asset);
+    $('.market_order .back_asset').html(front_asset);
+    $('.market_order .order_total .front_asset').html(back_asset);
 
-    // $('.stop_order .amount_section .back_asset').html(front_asset);
-    // $('.stop_order .order_total .front_asset').html(back_asset);
+    $('.stop_order .amount_section .back_asset').html(front_asset);
+    $('.stop_order .order_total .front_asset').html(back_asset);
 }
 
 function get_tradeprice(){
