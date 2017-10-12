@@ -3,7 +3,7 @@ var aggregation_num = 4;
 var order_trade_selection = 'order';
 var open_fill_selection = 'open';
 var front_asset = 'BTC', back_asset = 'ETH';
-var order_type, order_side;
+var order_type = "market", order_side = "buy";
 var flag;
 $(document).ready(function(){
     
@@ -110,6 +110,9 @@ $(document).ready(function(){
         $(".sidebar .orderform .sell").css('font-weight','normal');
         $(".sidebar .orderform .stateful_btn").css('border','2px solid #31ff31');
         $(".sidebar .orderform .stateful_btn").html("PLACE BUY ORDER");
+        if (order_type == "market") {
+            $('.market_order .result').html("You will pay.");
+        }
 
         set_asset();
     });
@@ -123,6 +126,9 @@ $(document).ready(function(){
         $(".sidebar .orderform .sell").css('font-weight','bold');
         $(".sidebar .orderform .stateful_btn").css('border','2px solid #fd2d2f');
         $(".sidebar .orderform .stateful_btn").html("PLACE SELL ORDER");
+        if (order_type == "market") {
+            $('.market_order .result').html("You will receive.");
+        }
 
         set_reverse_asset();
     });
@@ -594,12 +600,7 @@ function calc_total(){
         var amount = parseFloat($('.market_order .amount').val() || 0);
         var tradeprice = parseFloat($('.market_stat .num').html());
         var total;
-        if (order_side == "buy"){
-            if (tradeprice != 0)
-                total = parseFloat(amount / tradeprice).toFixed(8);
-        } else {
-            total = parseFloat(amount * tradeprice).toFixed(8);
-        }
+        total = parseFloat(amount * tradeprice).toFixed(8);
         $('.market_order .total').html(total);
     } else if (order_type == "limit") {
         var amount = parseFloat($('.limit_order .amount').val() || 0);
@@ -647,4 +648,11 @@ $(document).ready(function(){
 
       setInterval(function(){ requestData(sel_type, sel_graphType, back_asset, market_type); }, 3000);
       setInterval(function(){ draw_chart_order(back_asset, market_type); }, 3000);
+});
+
+addEventListener('DOMContentLoaded', function () {
+	pickmeup('#calendar', {
+		position       : 'right',
+		hide_on_select : true
+	});
 });

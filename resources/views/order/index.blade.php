@@ -18,9 +18,8 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <link rel="stylesheet" href="{{ asset('./css/pickmeup.css') }}">
-    <link rel="stylesheet" media="screen" href="{{ asset('./css/demo.css') }}">
+    <link rel="stylesheet" media="screen" href="{{ asset('./css/calendar.css') }}">
     <script src="{{ asset('./js/pickmeup.js') }}"></script>
-    <script src="{{ asset('./js/demo.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('./css/style.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('./css/cryptocoins.css') }}" type="text/css" media="all">
@@ -216,13 +215,13 @@
                             <div class="section_header">Amount</div>
                             <div class="order_form_input_box">
                                 <input type="number" step="0.01" min="0" name="amount" placeholder="0.00" value="" class="amount">
-                                <span class='back_asset'></span>
+                                <span class='front_asset'></span>
                             </div>
                         </div>
                         <div class="order_total">
                             <div>
-                                <span><b>Total</b></span>
-                                <span class='front_asset'></span>
+                                <span class='result'>You will pay</span>
+                                <span class='back_asset'></span>
                                 <b>≈</b>
                             </div>
                             <div class="total">0.00000000</div>
@@ -278,7 +277,7 @@
                             <div class="section_header">Amount</div>
                             <div class="order_form_input_box">
                                 <input type="number" step="0.01" min="0" name="amount" placeholder="0.00" value="" autocomplete="off" class="amount">
-                                <span class='back_asset'></span>
+                                <span class='front_asset'></span>
                             </div>
                         </div>
                         <div class="section">
@@ -304,7 +303,7 @@
                             <div class="section_header">Amount</div>
                             <div class="order_form_input_box">
                                 <input type="number" step="0.01" min="0" name="amount" placeholder="0.00" value="" autocomplete="off" class="amount">
-                                <span class='back_asset'></span>
+                                <span class='front_asset'></span>
                             </div>
                         </div>
                         <div class="section">
