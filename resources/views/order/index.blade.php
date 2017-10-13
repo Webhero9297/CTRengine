@@ -29,7 +29,7 @@
     <script src="{{ asset('./js/index.js') }}"></script>
     <script src="{{ asset('./js/ajax.js') }}"></script>
     <div class="banner">
-        <div class="row section">
+        <div class="row section" style="padding: 4px 20px;">
             <div class="logo"><img src="{{ asset('images/centra logo.png') }}"/></div>
             <div class="erc_txt">Centra Tech ERC2.0</div>
             <div class="erc_toggle">

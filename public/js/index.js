@@ -529,7 +529,7 @@ function initial_css(){
         price_chart_panel_height = order_book_panel_height;
         trade_history_content_height = order_book_panel_height - 72;
         price_chart_panel_width = $('body').width();
-        fills_content_height = $('body').height() - $('.open_orders_header').height() - $('.open_orders_panel .table_head').height() - 46;
+        fills_content_height = $('body').height() - $('.open_orders_header').height() - $('.open_orders_panel .table_head').height() - 46 - $('.banner').height();
         bottom_panel_height = $('body').height() - 46;
     } else{
         if ($('body').width() > 1473){
@@ -548,9 +548,10 @@ function initial_css(){
         sidebar_height = $('body').height();
         middle_panel_width = $('body').width() - 232;
         trade_history_content_height = order_book_panel_height - 72;
-        fills_content_height = bottom_panel_height -72;
+        fills_content_height = bottom_panel_height - 72 - $('.banner').height();
         order_book_content_height = order_book_panel_height - 58;
     }
+    alert($('.banner').height());
     etherdelta_height = $('body').height() - 30;
     $(".c-nav").css("height", cnav_height + 'px');
     $(".sidebar").css("height", sidebar_height + 'px');
