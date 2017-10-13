@@ -2,16 +2,17 @@ var list_num = 50;
 var interval_num_order_book = 0, interval_num_trade = 0, interval_num_open_orders = 0, interval_num_fills = 0;
 
 $(document).ready(function () {
-    var intervalId = window.setInterval(function () {
-        interval_num_order_book++;
-        interval_num_trade++;
-        interval_num_open_orders++;
-        interval_num_fills++;
-        getOrderData();
-        getTradeData();
-        getOpenOrders();
-        getFills();
-    }, 3000);
+    // var intervalId = window.setInterval(function () {
+    //     interval_num_order_book++;
+    //     interval_num_trade++;
+    //     interval_num_open_orders++;
+    //     interval_num_fills++;
+    //     getOrderData();
+    //     getTradeData();
+    //     getOpenOrders();
+    //     getFills();
+    // }, 3000);
+    getOpenOrders();
 });
 
 function getOrderData() {
@@ -130,7 +131,7 @@ function getOpenOrders() {
             var num = parseFloat(order.filled) / parseFloat(order.size);
             if (num > 1)    num = 1;
             
-            filled_str = '<div style="float:left;width:40px;height:12px;border:1px solid ' + color + ';margin-top: 4px;"><div style="float:left;height:10px;width:' + num*38 + 'px;background-color:' + color + ';"></div></div>';
+            filled_str = '<div style="float:left;width:40px;height:10px;border:1px solid ' + color + ';margin-top: 5px;"><div style="float:left;height:8px;width:' + num*38 + 'px;background-color:' + color + ';"></div></div>';
 
             body_html += '<tr class="open_orders_tr" style="font-size:11px;line-height:20px;" data-price="' + order.order_id + '"><td>\n\
 <div style="text-align:center;width:10%;float:left;"><div style="color:#d7d7d8;border:1px solid #d7d7d8;border-radius:8px;height:16px;width: 16px;margin: auto;font-size:10px;"><div style="margin-top: -2px;">' + order.order_type.substr(0,1).toUpperCase() + '</div></div></div>\n\
