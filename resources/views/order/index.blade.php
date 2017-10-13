@@ -548,7 +548,7 @@
         </div>
     </div>
     <div class="etherdelta">
-        <iframe src="https://etherdelta.com"></iframe>
+        <iframe src="http://localhost:9297"></iframe>
     </div>        
     <div class='deposit_bg'>
         <div class='deposit_dlg'>

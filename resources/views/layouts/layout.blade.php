@@ -18,7 +18,7 @@
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyCGyEhcN3EHQtgq5aewE_elp6mQyrbuWyA&amp;language=en"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="{{ asset('images/centra-logo.png') }}" rel="icon" />
     <style>
       .container{
         width:100%;
