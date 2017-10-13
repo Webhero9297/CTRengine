@@ -74,6 +74,7 @@ input::-webkit-inner-spin-button {
     color: rgb(253, 45, 47);
     display: none;
 }
+
 /* loading */
 
 #curtain {
@@ -184,10 +185,34 @@ input::-webkit-inner-spin-button {
 .etherdelta iframe {
     border: 0px;
 }
-.dropdown-toggle {
-    padding: 0;
-    margin-top: -8px;
+#user {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px;
 }
+#user:hover {
+    color: white;
+}
+#username {
+    float:left;
+}
+#logout {
+    cursor: pointer;
+    display: none;
+    background-color: white;
+    color: #212121;
+    position: absolute;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    margin-top: 5px;
+    z-index: 2;
+}
+#logout:hover {
+    background-color: #d0d0d0;
+}
+
 /* header */
 
 .header .row {

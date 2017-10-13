@@ -35,30 +35,17 @@
             <div class="erc_toggle">
                 <input type="checkbox" data-toggle="toggle" data-size="mini" id="toggle_erc20" onchange='doOnERC20Toggle()'>
             </div>
-            <div style="float:right;">
-                    <ul class="nav navbar-nav navbar-right" style="height:20px;">
-                        @if (!Auth::guest())
-                            <li class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+        @if (!Auth::guest())
+            <div id="banner_login" style="float:right;">
+                    <div id="user">
+                         <div id="username">{{ Auth::user()->name }}</div>
+                         <div class="caret"></div>
+                    </div>
+                    <div id="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</div>          
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    </form>          
             </div>
+        @endif
         </div>
     </div>
     <div class="content">

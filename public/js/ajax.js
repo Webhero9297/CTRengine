@@ -133,7 +133,7 @@ function getOpenOrders() {
             filled_str = '<div style="float:left;width:40px;height:12px;border:1px solid ' + color + ';margin-top: 4px;"><div style="float:left;height:10px;width:' + num*38 + 'px;background-color:' + color + ';"></div></div>';
 
             body_html += '<tr class="open_orders_tr" style="font-size:11px;line-height:20px;" data-price="' + order.order_id + '"><td>\n\
-<div style="text-align:center;width:10%;float:left;"><div style="color:#d7d7d8;border:1px solid #d7d7d8;border-radius:8px;height:16px;width: 16px;margin: auto;font-size:10px;"><span style="margin-left: -1px;">' + order.order_type.substr(0,1).toUpperCase() + '</span></div></div>\n\
+<div style="text-align:center;width:10%;float:left;"><div style="color:#d7d7d8;border:1px solid #d7d7d8;border-radius:8px;height:16px;width: 16px;margin: auto;font-size:10px;"><div style="margin-top: -2px;">' + order.order_type.substr(0,1).toUpperCase() + '</div></div></div>\n\
 <div style="text-align:center;width:15%;float:left;"><span style="color:#d7d7d8;">' + parseFloat(order.size).toFixed(8) + '</span></div>\n\
 <div style="text-align:center;width:15%;float:left;color:#d7d7d8;">' + filled_str + '<div>' + order.filled + '</div></div>\n\
 <div style="text-align:center;width:15%;float:left;"><span style="color:' + color + ';">' + parseFloat(order.price).toFixed(2) + '</span></div>\n\

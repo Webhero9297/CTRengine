@@ -427,8 +427,12 @@ $(document).ready(function(){
 
     });
 
-    // Calendar
-    
+    $('#user').click(function(){
+        if ($('#logout').css('display') == 'none')
+            $('#logout').css('display', 'block');
+        else
+            $('#logout').css('display', 'none');
+    });
 
     init_asset_balance();
     init_time();
@@ -551,7 +555,6 @@ function initial_css(){
         fills_content_height = bottom_panel_height - 72 - $('.banner').height();
         order_book_content_height = order_book_panel_height - 58;
     }
-    alert($('.banner').height());
     etherdelta_height = $('body').height() - 30;
     $(".c-nav").css("height", cnav_height + 'px');
     $(".sidebar").css("height", sidebar_height + 'px');
