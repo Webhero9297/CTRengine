@@ -37,7 +37,6 @@
             </div>
             <div style="float:right;">
                     <ul class="nav navbar-nav navbar-right" style="height:20px;">
-                        <!-- Authentication Links -->
                         @if (!Auth::guest())
                             <li class="dropdown">
                                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -53,7 +52,6 @@
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            <!-- {{ csrf_field() }} -->
                                         </form>
                                     </li>
                                 </ul>

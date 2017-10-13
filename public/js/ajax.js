@@ -1,38 +1,18 @@
-var sel_point = 'a_btc_usd';
-var market_flag = 'buy';
 var list_num = 50;
 var interval_num_order_book = 0, interval_num_trade = 0, interval_num_open_orders = 0, interval_num_fills = 0;
 
 $(document).ready(function () {
-    $('input[name="radio_market"]').click(function () {
-        market_flag = $(this).attr('id');
-        $('#btn_market').html("PLACE " + market_flag.toUpperCase() + " ORDER");
-    });
-    var product_id = sel_point.replace("a_", "").split("_").join("-").toUpperCase();
-
-    setMarks();
-    var mHeight = parseInt(window.innerHeight) - 70;
-    $('.container-body').css('height', mHeight + 'px');
-    $('#main_body').height(mHeight + 'px');
-    $('#a_point').html('BTC/USD');
+    var intervalId = window.setInterval(function () {
+        interval_num_order_book++;
+        interval_num_trade++;
+        interval_num_open_orders++;
+        interval_num_fills++;
+        getOrderData();
+        getTradeData();
+        getOpenOrders();
+        getFills();
+    }, 3000);
 });
-
-window.onresize = function (event) {
-    var mHeight = parseInt(window.innerHeight) - 70;
-    $('.container-body').css('height', mHeight + 'px');
-    $('#main_body').height(mHeight + 'px');
-};
-
-var intervalId = window.setInterval(function () {
-    interval_num_order_book++;
-    interval_num_trade++;
-    interval_num_open_orders++;
-    interval_num_fills++;
-    getOrderData();
-    getTradeData();
-    getOpenOrders();
-    getFills();
-}, 3000);
 
 function getOrderData() {
     if (interval_num_order_book == 1)  {
@@ -40,7 +20,6 @@ function getOrderData() {
     }
     $.get('getorderbooklist/' + front_asset + '-' + back_asset + '?aggregation=' + aggregation_values[aggregation_num], function (resp) {
         var data = typeof resp == 'string' ? JSON.parse(resp) : resp;
-        console.log(data);
         var asks = data.ask;
         var bids = data.bid;
 
@@ -122,7 +101,6 @@ function getTradeData() {
 <div style="text-align:center;width:40%;float:left;color:#31ff31;"><span>' + parseFloat(trade.price).toFixed(2) + '&nbsp;</span>' + arrow + '</div>\n\
 <div style="text-align:left;width:30%;float:left;"><span style="color:#d7d7d8;">' + trade.time + '</span></div></td></tr>';
             }
-            
         }
 
         trade_tbl_str += trade_body_html + "</tbody></table>";
@@ -201,18 +179,6 @@ function getFills() {
         if (interval_num_fills > 0){
             stopLoading('fills');
         }
-    });
-}
-
-function setMarks() {
-    var tmp_val = sel_point.replace("a_", "").split("_");
-    $('#currency1').html(tmp_val[0].toUpperCase());
-    $('#currency2').html(tmp_val[1].toUpperCase());
-}
-
-function makeNumber(n) {
-    return parseFloat(n).toFixed(2).replace(/./g, function (c, i, a) {
-        return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
     });
 }
 
