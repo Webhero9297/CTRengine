@@ -146,9 +146,9 @@ function getOpenOrders() {
             var order = orders[i];
             var filled_str = '';
             if (order.order_side == "buy") 
-                var color = "#fd2d2f";
+                var color = "#31ff31";
             else
-                var color =  "#31ff31";
+                var color = "#fd2d2f";
             var num = parseFloat(order.filled) / parseFloat(order.size);
             if (num > 1)    num = 1;
             

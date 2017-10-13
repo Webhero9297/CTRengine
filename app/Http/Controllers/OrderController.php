@@ -40,6 +40,10 @@ class OrderController extends Controller
       $order_data['stop_price'] = floatval(request()->get('stop_price'));
       $order_data['offer_asset'] = request()->get('offer_asset');
       $order_data['want_asset'] = request()->get('want_asset');
+      if ( $order_data['order_type'] =='limit' || $order_data['order_type'] == 'stoplimit' ) {
+        $order_data['price'] = $order_data['limit_price'];
+      }
+
       if (request()->get('expiration_date') != 'NONE' && request()->get('expiration_date') !=1) $order_data['expiration_date'] = request()->get('expiration_date');
       if ( request()->get('expiration_date') == 1 )  $order_data['expiration_date'] = date("Y-m-d 23:59:59");
       if (request()->get('time_in_force') != 'NONE') $order_data['time_in_force'] = request()->get('time_in_force');
@@ -53,8 +57,8 @@ class OrderController extends Controller
       
       $order_data['order_id'] = time('Y-m-d\TH:i:s\Z');
 
-      $orderTransModel = new OrderTransaction();
-      $trade_price = $orderTransModel->getTradePrice($order_data['want_asset'], $order_data['offer_asset']);
+      // $orderTransModel = new OrderTransaction();
+      $trade_price = Common::getTradePrice($order_data['want_asset'], $order_data['offer_asset']);
 
       $assetModel = new AssetBalance();
       if ( $order_data['order_side'] == 'buy' ) {
@@ -73,17 +77,23 @@ class OrderController extends Controller
         }
       }
 
-      $orderModel = new OrderBookModel();
-      $orderModel->storeNewOrder($order_data);
 
+      $orderModel = new OrderBookModel();
+      $orderModel->getTradeMaxMinOpenPrice($order_data);
+      $orderModel->storeNewOrder($order_data);
+      $fee = 0.0001;  // 0.0001%;
       if ( $order_data['order_side'] == 'buy' ) {
         $orderModel->PlaceBuyBid($order_data['customer_id'], $trade_price, date('Y-m-d H:i:s'));
+        $frozenBalance = (1+$fee)*$trade_price*$order_data['quantity'];
+        $assetModel->setFrozenBalance($order_data['customer_id'], $order_data['offer_asset'], $frozenBalance);
       }
       else {
         $orderModel->PlaceSellAsk($order_data['customer_id'], $trade_price, date('Y-m-d H:i:s'));
+        $assetModel->setFrozenBalance($order_data['customer_id'], $order_data['offer_asset'], $order_data['quantity']);
       }
 
-      $orderModel->OrderMatch($order_data);
+      $ret = $orderModel->OrderMatch($order_data);
+var_dump(print_r($ret, true));
       exit;
       $order_date = Common::udate('Y-m-d H:i:s.u');
 
@@ -104,8 +114,9 @@ class OrderController extends Controller
 
       //  Place
       $orderModel->setOrder( $order_id );
-      $orderTransModel = new OrderTransaction();
-      $trade_price = $orderTransModel->getTradePrice($offer_asset, $want_asset);
+      $trade_price = Common::getTradePrice($want_asset, $offer_asset);
+      // $orderTransModel = new OrderTransaction();
+      // $trade_price = $orderTransModel->getTradePrice($offer_asset, $want_asset);
       if ( $order_side == 'buy' ) {
         if ($orderModel->getPlaceBuyBid($order_id)) {
           if ( $order_type == 'limit' ) {  // if current order is limit order, process with $price
@@ -318,8 +329,8 @@ class OrderController extends Controller
       header('Content-type:application/json');
       $offer_asset = $tmp[1];
       $want_asset = $tmp[0];
-      $model = new OrderTransaction();
-      $ret_data['result']['trade_price'] = $model->getTradePrice($want_asset, $offer_asset);
+      // $model = new OrderTransaction();
+      $ret_data['result']['trade_price'] = Common::getTradePrice($want_asset, $offer_asset);
       echo json_encode($ret_data);
     }
 
@@ -373,8 +384,8 @@ class OrderController extends Controller
     public function getTradeHistory($product) {
       header('Content-type:application/json');
       $tmp = explode('-', $product);
-      $offer_asset = $tmp[0];
-      $want_asset = $tmp[1];
+      $offer_asset = $tmp[1];
+      $want_asset = $tmp[0];
       $resp_arr = array();
       $model = new OrderTransaction();
       $resp_arr = $model->getTradeHistoryData($offer_asset, $want_asset);

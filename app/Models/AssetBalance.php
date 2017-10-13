@@ -42,4 +42,51 @@ class AssetBalance extends Model
         if ( is_null($data) ) return array('asset_balance'=>0, 'frozen_balance'=>0);
         return array('asset_balance'=>$data->balance, 'frozen_balance'=>$data->frozen_balance);
     }
+    public function setFrozenBalance( $customer_id, $asset, $hold_balance ) {
+        $data = $this->where('customer_id', $customer_id)->where('asset', $asset)->first();
+        $frozen_balance = $data->frozen_balance + $hold_balance;
+        $this->where('customer_id', $customer_id)->where('asset', $asset)->update(['frozen_balance'=>$frozen_balance]);
+    }
+    public function releaseCustomerAssetBalance( $a_customer_id, $a_order_side, $b_customer_id, $want_asset_quantity, $trade_price, $want_asset, $offer_asset, $fee ) {
+        $data = $this->where('customer_id', $a_customer_id)->where('asset', $want_asset)->first();
+        $a_want_balance = $data->balance;
+        $a_want_frozen_balance = $data->frozen_balance;
+        $data = $this->where('customer_id', $a_customer_id)->where('asset', $offer_asset)->first();
+        $a_offer_balance = $data->balance;
+        $a_offer_frozen_balance = $data->frozen_balance;
+
+        $data = $this->where('customer_id', $b_customer_id)->where('asset', $want_asset)->first();
+        $b_want_balance = $data->balance;
+        $b_want_frozen_balance = $data->frozen_balance;
+        $data = $this->where('customer_id', $b_customer_id)->where('asset', $offer_asset)->first();
+        $b_offer_balance = $data->balance;
+        $b_offer_frozen_balance = $data->frozen_balance;
+        if ( $a_order_side == 'buy' ) {
+            // A_customer_side
+            $a_want_balance += $want_asset_quantity;
+            $a_offer_balance -= (1+$fee)*$want_asset_quantity*$trade_price;
+            $a_offer_frozen_balance -= (1+$fee)*$want_asset_quantity*$trade_price;
+
+            // B_customer_side
+            $b_want_balance -= $want_asset_quantity;
+            $a_offer_balance += (1-$fee)*$want_asset_quantity*$trade_price;
+            $a_want_frozen_balance -= $want_asset_quantity;
+        }
+        else {
+            // A_customer_side
+            $a_want_balance -= $want_asset_quantity;
+            $a_want_frozen_balance -= $want_asset_quantity;
+            $a_offer_balance += (1-$fee)*$want_asset_quantity*$trade_price;
+
+            // B_customer_side
+            $b_want_balance += $want_asset_quantity;
+            $a_offer_balance -= (1+$fee)*$want_asset_quantity*$trade_price;
+            $a_offer_frozen_balance -= (1+$fee)*$want_asset_quantity*$trade_price;
+        }
+        $this->where('customer_id', $a_customer_id)->where('asset', $want_asset)->update(['balance'=>$a_want_balance, 'frozen_balance'=>$a_want_frozen_balance]);
+        $this->where('customer_id', $a_customer_id)->where('asset', $offer_asset)->update(['balance'=>$a_offer_balance, 'frozen_balance'=>$a_offer_frozen_balance]);
+
+        $this->where('customer_id', $b_customer_id)->where('asset', $want_asset)->update(['balance'=>$b_want_balance, 'frozen_balance'=>$b_want_frozen_balance]);
+        $this->where('customer_id', $b_customer_id)->where('asset', $offer_asset)->update(['balance'=>$b_offer_balance, 'frozen_balance'=>$b_offer_frozen_balance]);
+    }
 }
