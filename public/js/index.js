@@ -188,7 +188,6 @@ $(document).ready(function(){
             }
         } else if (order_type == "stop") {
             stop_price = $(".stop_order .stop_price").val();
-            limit_price = 'NONE';
             if ($('.stop_order .amount').val() == ''){
                 alert("input amount");
                 return;
@@ -218,8 +217,6 @@ $(document).ready(function(){
                 expiration_date = date_format($('.stoplimit_order #calendar').val(), $('.stoplimit_order #cancel_time').val());
             }
         }
-
-        
 
         var post_param = {
             customer_id: 1,
