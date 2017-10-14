@@ -103,6 +103,27 @@
                             <div class="crypto_rise"><i class="fa fa-chevron-up" aria-hidden="true" ></i></div>
                         </div>
                 </div>
+                <div id="asset_ctr" class="asset_section">
+                        <div class="asset_title">CTR</div>
+                        <div class="asset_item">
+                            <div class="crypto_name">CTR/BTC</div>
+                            <div class="crypto_price"><i class="cc BTC" aria-hidden="true"></i>0.00219996</div>
+                            <div class="crypto_percent">0.81%</div>
+                            <div class="crypto_rise"><i class="fa fa-chevron-up" aria-hidden="true" ></i></div>
+                        </div>
+                        <div class="asset_item">
+                            <div class="crypto_name">CTR/ETH</div>
+                            <div class="crypto_price"><i class="cc ETH" aria-hidden="true"></i>0.03667154</div>
+                            <div class="crypto_percent">8.42%</div>
+                            <div class="crypto_rise"><i class="fa fa-chevron-up" aria-hidden="true" ></i></div>
+                        </div>
+                        <div class="asset_item">
+                            <div class="crypto_name">CTR/USDT</div>
+                            <div class="crypto_price"><i class="cc USDT" aria-hidden="true"></i>12.31333534</div>
+                            <div class="crypto_percent">1.56%</div>
+                            <div class="crypto_rise"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                        </div>
+                </div>
                 <div class="asset_section">
                         <div class="asset_title">DASH</div>
                         <div class="asset_item">
