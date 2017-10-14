@@ -31,7 +31,7 @@
     <div class="banner">
         <div class="row section" style="padding: 4px 20px;">
             <div class="logo"><img src="{{ asset('images/centra logo.png') }}"/></div>
-            <div class="erc_txt">Decentralized Trading</div>
+            <div class="erc_txt">DECENTRALIZED TRADING</div>
             <div class="erc_toggle">
                 <input type="checkbox" data-toggle="toggle" data-size="mini" id="toggle_erc20" onchange='doOnERC20Toggle()'>
             </div>
