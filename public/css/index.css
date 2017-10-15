@@ -546,20 +546,17 @@ input::-webkit-inner-spin-button {
     float: left;
     width: 38%;
     text-align: left;
-    font-weight: normal;
 }
 .crypto_price {
     float: left;
     width: 36%;
     text-align: left;
-    font-weight: normal;
 }
 .crypto_percent {
     float: left;
     color: #31ff31;
     width: 18%;
     text-align: right;
-    font-weight: normal;
 }
 .crypto_rise {
     float: left;
