@@ -569,7 +569,7 @@
         </div>
     </div>
     <div class="etherdelta">
-        <iframe src="http://localhost:9297"></iframe>
+        <iframe src="http://localhost:6001"></iframe>
     </div>        
     <div class='deposit_bg'>
         <div class='deposit_dlg'>
