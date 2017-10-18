@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\eventTrigger;
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -22,6 +24,10 @@ Route::post('/addorder', "OrderController@addOrder")->name('addorder');
 
 Route::post('assetdeposit/{product}', 'OrderController@AssetDeposit')->name('assetdeposit');
 Route::post('assetwithdraw/{product}', 'OrderController@AssetWithdraw')->name('assetwithdraw');
+
+Route::get('/fireEvent', function(){
+    event(new eventTrigger());
+});
 
 /** REST API  **/
 Route::get('/getfilldata/{product}', "OrderController@getFillDataOfOrder")->name('getfilldata');
