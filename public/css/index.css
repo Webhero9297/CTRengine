@@ -5,12 +5,6 @@
     src: url(../fonts/opensans-regular-webfont.woff2) format("woff2")
 }
 @font-face {
-    font-family: "opensans";
-    font-style: bold;
-    font-weight: bold;
-    src: url(../fonts/opensans-bold-webfont.woff2) format("woff2")
-}
-@font-face {
     font-family: "btcglyph";
     font-style: normal;
     font-weight: normal;
@@ -438,7 +432,7 @@ input::-webkit-inner-spin-button {
 .sidebar {
     width: 230px;
     float:left;
-    border-right: 2px solid hsla(0,0%,100%,.2);
+    padding-right: 2px;
     overflow: hidden;
 }
 .sidebar .account {
