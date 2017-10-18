@@ -5,6 +5,12 @@
     src: url(../fonts/opensans-regular-webfont.woff2) format("woff2")
 }
 @font-face {
+    font-family: "opensans_bold";
+    font-style: normal;
+    font-weight: bold;
+    src: url(../fonts/opensans-bold-webfont.woff2) format("woff2")
+}
+@font-face {
     font-family: "btcglyph";
     font-style: normal;
     font-weight: normal;
@@ -61,7 +67,7 @@ input::-webkit-inner-spin-button {
 .navbar-nav > li > a {
     padding: 7px 10px;
     font-size: 14PX;
-    font-weight: bold;
+    font-family: "opensans_bold";
 }
 .div_msg {
     margin-top: 10px;
@@ -161,7 +167,7 @@ input::-webkit-inner-spin-button {
 .erc_txt {
     float: left;
     position: relative;
-    font-weight: bold;
+    font-family: "opensans_bold";
     margin-top: 4px;
     margin-left: 10px;
 }
@@ -182,7 +188,7 @@ input::-webkit-inner-spin-button {
 #user {
     cursor: pointer;
     font-size: 12px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     padding: 2px;
 }
 #user:hover {
@@ -250,7 +256,7 @@ input::-webkit-inner-spin-button {
 .header .marketinfo .menu_entry {
     margin-right: 10px;
     font-size: 15px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: rgba(21,35,44,.8);
 }
 .header .marketinfo .menu_entry:hover {
@@ -332,7 +338,7 @@ input::-webkit-inner-spin-button {
 .header .product_list .title {
     margin-bottom: 4px;
     font-size: 13px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: #15232c;
 }   
 .header .product_list .products {
@@ -396,7 +402,7 @@ input::-webkit-inner-spin-button {
 .day_volume .front_asset {
     display: inline-block;
     font-size: 15px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     opacity: .8;
     color: white;
     float: left;
@@ -423,7 +429,7 @@ input::-webkit-inner-spin-button {
     color: #31ff31;
     display: inline-block;
     font-size: 15px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     opacity: .8;
 }   
 
@@ -478,7 +484,7 @@ input::-webkit-inner-spin-button {
     overflow: auto;
     height: 100%;
     margin-top: 43px;
-    font-weight: bold;
+    font-family: "opensans_bold";
 }
 #netfee {
     font-size: 16px;
@@ -568,7 +574,7 @@ input::-webkit-inner-spin-button {
 .txt_balance {
     font-size: 14px;
     color: white;
-    font-weight: bold;
+    font-family: "opensans_bold";
     padding-bottom: 10px;
 }
 .btn_style1 {
@@ -627,14 +633,14 @@ input::-webkit-inner-spin-button {
     flex: 1;
     padding-bottom: 2px;
     font-size: 10px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: center;
 }
 .sidebar .margin .on_txt {
     flex: 1;
     padding-bottom: 2px;
     font-size: 10px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: center;
     color: #fff;
     opacity: 0;
@@ -650,7 +656,7 @@ input::-webkit-inner-spin-button {
     border: 1px solid hsla(0,0%,100%,.4);
     border-radius: 3px;
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-transform: uppercase;
     color: #fff;
     background-color: transparent;
@@ -668,7 +674,7 @@ input::-webkit-inner-spin-button {
     border: 1px solid hsla(0,0%,100%,.4);
     border-radius: 3px;
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-transform: uppercase;
     color: #fff;
     background-color: transparent;
@@ -723,7 +729,7 @@ input::-webkit-inner-spin-button {
     border: 2px solid #31ff31;
     border-radius: 4px;
     font-size: 12px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     line-height: 30px;
     text-align: center;
     color: #fff;
@@ -754,7 +760,7 @@ input::-webkit-inner-spin-button {
 .sidebar .orderform .section_header {
     margin-bottom: 5px;
     font-size: 10px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: hsla(0,0%,100%,.8);
 }
 .sidebar .orderform .order_form_input_box input {
@@ -766,7 +772,7 @@ input::-webkit-inner-spin-button {
     outline: 0;
     box-shadow: none;
     font-size: 14px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: left;
     color: #fff;
     background-color: rgba(64,74,82,0.2);
@@ -776,7 +782,7 @@ input::-webkit-inner-spin-button {
     top: 50%;
     right: 10px;
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: hsla(0,0%,100%,.9);
     transform: translateY(-50%);
 }
@@ -789,7 +795,7 @@ input::-webkit-inner-spin-button {
     padding: 15px 0;
     border-top: 2px solid hsla(206,8%,82%,.15);
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     line-height: 11px;
     color: #ced2d5;
 }
@@ -810,7 +816,7 @@ input::-webkit-inner-spin-button {
     border: 2px solid #31ff31;
     border-radius: 4px;
     font-size: 13px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: center;
     text-transform: uppercase;
     color: #fff;
@@ -821,7 +827,7 @@ input::-webkit-inner-spin-button {
 .sidebar .orderform .advanced_section .header {
     display: flex;
     font-size: 12px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     cursor: pointer;
 }
 .sidebar .orderform .advanced_section .spacer {
@@ -847,7 +853,7 @@ input::-webkit-inner-spin-button {
 .sidebar .orderform .advanced_section .advanced_content .header {
     margin-bottom: 5px;
     font-size: 10px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: hsla(0,0%,100%,.8);
 }
 .sidebar .orderform .advanced_section .advanced_content select {
@@ -919,8 +925,8 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-family: "opensans_bold";
     font-size: 14px;
-    font-weight: bold;
     color: #fff;
 }
 .order_trade_tabs {
@@ -933,7 +939,7 @@ input::-webkit-inner-spin-button {
     margin-bottom: -1px;
     padding-bottom: 1px;
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: hsla(206,8%,82%,.6);
     cursor: pointer;
     float: left;
@@ -953,7 +959,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     padding: 6px 10px 12px 0;
     border-bottom: 1px solid hsla(206,8%,82%,.15);
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: right;
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -1020,14 +1026,14 @@ input::-webkit-inner-spin-button {
 .order_book_panel .aggregation .text {
     padding-left: 10px;
     font-size: 9.5px;
-    font-weight: 700;
+    font-family: "opensans_bold";
     text-align: left;
     color: hsla(206,8%,82%,.75);
 }
 .order_book_panel .aggregation .value {
     flex: 1;
     padding-right: 3px;
-    font-weight: 700;
+    font-family: "opensans_bold";
     text-align: right;
     color: hsla(206,8%,82%,.75);
 }
@@ -1082,8 +1088,8 @@ input::-webkit-inner-spin-button {
     min-height: 29px;
     padding: 6px 0;
     border-bottom: 1px solid hsla(0,0%,100%,.2);
+    font-family: "opensans_bold";
     font-size: 11px;
-    font-weight: bold;
     line-height: 16px;
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -1143,7 +1149,7 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: #fff;
 }
 .open_orders_panel {
@@ -1170,7 +1176,7 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: #fff;
 }
 .open_fill_tabs {
@@ -1183,7 +1189,7 @@ input::-webkit-inner-spin-button {
     margin-bottom: -1px;
     padding-bottom: 1px;
     font-size: 11px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: hsla(206,8%,82%,.6);
     cursor: pointer;
 }
@@ -1198,16 +1204,14 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     overflow: hidden;
 }
-
 .open_orders_panel .table_head {
     display: flex;
     padding: 6px 10px 6px 0;
     border-bottom: 1px solid hsla(206,8%,82%,.15);
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
 }
-
 .open_orders_panel .table_content {
     position: relative;
     display: flex;
@@ -1255,14 +1259,14 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
     align-items: center;
     font-size: 14px;
-    font-weight: bold;
+    font-family: "opensans_bold";
     color: #fff;
 }
 .fills_panel .table_head {
     display: flex;
     padding: 6px 10px 6px 0;
     border-bottom: 1px solid hsla(206,8%,82%,.15);
-    font-weight: bold;
+    font-family: "opensans_bold";
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
 }
@@ -1299,7 +1303,7 @@ input::-webkit-inner-spin-button {
     width:25%;
     cursor: pointer;
     padding: 15px 0 15px 0;
-    font-weight: bold;
+    font-family: "opensans_bold";
     border-right: 1px solid hsla(0,0%,100%,.5);
     float:left;
 }

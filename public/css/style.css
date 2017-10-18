@@ -19,7 +19,7 @@
 .select_box_style {
   background-color: #101010;
   color: #ced2d5;
-  font-weight: bold;
+  font-family: "opensans_bold";
   border: 0px;
   padding: 3px;
   float: left;

@@ -11,15 +11,6 @@ $(document).ready(function(){
     set_asset();  
     get_tradeprice();
 
-    //inserted By Webhero9297
-    $('#toggle_erc20').bootstrapToggle({
-        on: 'DECENTRALIZED TRADING',
-        off: 'CENTRALIZED TRADING',
-        onstyle: 'success',
-        offstyle: 'danger'
-    });
-    // end part of Webhero9297 code
-
     $( ".header .product_selection h4" ).click(function(){
             $(".header .marketinfo .menu_entry").css('color','rgba(81,141,202,.8)');
         }
@@ -518,9 +509,11 @@ function doOnERC20Toggle() {
     if ($('#toggle_erc20').is(':checked')) {
         $('.content').css('display', 'none');
         $('.etherdelta').css('display', 'block');
+        $('.erc_txt').html("CENTRALIZED TRADING");
     } else {
         $('.content').css('display', 'block');
         $('.etherdelta').css('display', 'none');
+        $('.erc_txt').html("DECENTRALIZED TRADING");
     }
 }
 
