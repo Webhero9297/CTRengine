@@ -99,11 +99,11 @@ $(document).ready(function(){
     $(".sidebar .orderform .buy").click(function(){
         $(".sidebar .orderform .buy").css('color','#fff');
         $(".sidebar .orderform .buy").css('border','2px solid #31ff31');
-        $(".sidebar .orderform .buy").css('font-weight','bold');
+        $(".sidebar .orderform .buy").css('font-family','"opensans_bold"');
         
         $(".sidebar .orderform .sell").css('color','hsla(0,0%,100%,.5)');
         $(".sidebar .orderform .sell").css('border','1px solid hsla(0,0%,100%,.5)');
-        $(".sidebar .orderform .sell").css('font-weight','normal');
+        $(".sidebar .orderform .sell").css('font-family','opensans');
         $(".sidebar .orderform .stateful_btn").css('border','2px solid #31ff31');
         $(".sidebar .orderform .stateful_btn").html("PLACE BUY ORDER");
         if (order_type == "market") {
@@ -115,11 +115,11 @@ $(document).ready(function(){
     $(".sidebar .orderform .sell").click(function(){
         $(".sidebar .orderform .buy").css('color','hsla(0,0%,100%,.5)');
         $(".sidebar .orderform .buy").css('border','1px solid hsla(0,0%,100%,.5)');
-        $(".sidebar .orderform .buy").css('font-weight','normal');
+        $(".sidebar .orderform .buy").css('font-family','opensans');
         
         $(".sidebar .orderform .sell").css('color','#fff');
         $(".sidebar .orderform .sell").css('border','2px solid #fd2d2f');
-        $(".sidebar .orderform .sell").css('font-weight','bold');
+        $(".sidebar .orderform .sell").css('font-family','"opensans_bold"');
         $(".sidebar .orderform .stateful_btn").css('border','2px solid #fd2d2f');
         $(".sidebar .orderform .stateful_btn").html("PLACE SELL ORDER");
         if (order_type == "market") {
