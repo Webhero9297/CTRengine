@@ -29,7 +29,7 @@
     <script src="{{ asset('./js/index.js') }}"></script>
     <script src="{{ asset('./js/ajax.js') }}"></script>
     <div class="banner">
-        <div class="row section" style="padding: 4px 20px;">
+        <div class="row section" style="padding: 20px 20px;">
             <div class="logo"><img src="{{ asset('images/centra logo.png') }}"/></div>
             <div class="erc_txt">DECENTRALIZED TRADING</div>
             <div class="erc_toggle">
@@ -391,186 +391,187 @@
                 </form>
             </div>
         </div>
-        
-        <div class="row middle_panel">
-            <div class="col-md-12">
-                <div class="row price_chart_panel">
-                    <div class="price_chart_header">
-                        <div class="title">PRICE CHART</div>
-                        <div class="trade_info_bar">
-                            <div class="market_stat">
-                                <span class="num">0.00000000</span><span class="back_asset"></span>
-                                <span class="descr">Last trade price</span>
+        <div class="main_content">
+            <div class="row middle_panel">
+                <div class="col-md-12">
+                    <div class="row price_chart_panel panel">
+                        <div class="price_chart_header">
+                            <div class="title">PRICE CHART</div>
+                            <div class="trade_info_bar">
+                                <div class="market_stat">
+                                    <span class="num">0.00000000</span><span class="back_asset"></span>
+                                    <span class="descr">Last trade price</span>
+                                </div>
+                                <div class="price_up">
+                                    <span class="sign">+</span>
+                                    <span class="num">9.46 %</span>
+                                    <span class="descr">24 hour price</span>
+                                </div>
+                                <div class="day_volume">
+                                    <span class="num">55991&nbsp;</span><span class="front_asset"></span>
+                                    <span class="descr">24 hour volume</span>
+                                </div>
                             </div>
-                            <div class="price_up">
-                                <span class="sign">+</span>
-                                <span class="num">9.46 %</span>
-                                <span class="descr">24 hour price</span>
+                        </div>
+                        <div class="price_chart_content">
+                            <div id = 'option_container'  >
+                                <select id = 'sel_chart' class = 'select_box_style' >					
+                                    <option value = 'candlestick'>Candle</option>
+                                    <option value = 'line'>Line</option>
+                                </select>
+                                <select id = 'sel_type' class = 'select_box_style' >
+                                    <option value = 60>1m</option>
+                                    <option value = 300>5m</option>
+                                    <option value = 900>15m</option>
+                                    <option value = 3600>1h</option>
+                                    <option value = 21600>6h</option>
+                                    <option value = 86400>1d</option>
+                                </select>
+
+                                <div class = 'sel_bigchart' >
+                                    <font id = 'price_c' onclick = "change_style('price_chart');" style = 'cursor: pointer;' >Price Chart</font> | 
+                                    <font id = 'depth_c' onclick = "change_style('depth_chart');" style = 'cursor: pointer;'>Depth Chart</font>
+                                </div>
+
                             </div>
-                            <div class="day_volume">
-                                <span class="num">55991&nbsp;</span><span class="front_asset"></span>
-                                <span class="descr">24 hour volume</span>
+
+                            <div id = 'chartContain' >
+                                <div id="chartdiv" class = 'chart_div'  >
+                                    <div id="curtain" class="loader">Loading...</div>
+                                </div>
+                            </div>
+                            <div id = 'chartContain_2' >
+                                <div id="chartdiv_2" class = 'chart_div'  >
+                                    <div id="curtain_2" class="loader">Loading...</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="price_chart_content">
-                        <div id = 'option_container'  >
-                            <select id = 'sel_chart' class = 'select_box_style' >					
-                                <option value = 'candlestick'>Candle</option>
-                                <option value = 'line'>Line</option>
-                            </select>
-                            <select id = 'sel_type' class = 'select_box_style' >
-                                <option value = 60>1m</option>
-                                <option value = 300>5m</option>
-                                <option value = 900>15m</option>
-                                <option value = 3600>1h</option>
-                                <option value = 21600>6h</option>
-                                <option value = 86400>1d</option>
-                            </select>
-
-                            <div class = 'sel_bigchart' >
-                                <font id = 'price_c' onclick = "change_style('price_chart');" style = 'cursor: pointer;' >Price Chart</font> | 
-                                <font id = 'depth_c' onclick = "change_style('depth_chart');" style = 'cursor: pointer;'>Depth Chart</font>
-                            </div>
-
-                        </div>
-
-                        <div id = 'chartContain' >
-                            <div id="chartdiv" class = 'chart_div'  >
-                                <div id="curtain" class="loader">Loading...</div>
+                    <div class="row order_book_panel panel">
+                        <div class="order_book_header">
+                            <div class="title">ORDER BOOK</div>
+                            <div class="order_trade_tabs">
+                                <div class="order_tab">Order book</div>
+                                <div class="trade_tab">Trade history</div>
                             </div>
                         </div>
-                        <div id = 'chartContain_2' >
-                            <div id="chartdiv_2" class = 'chart_div'  >
-                                <div id="curtain_2" class="loader">Loading...</div>
+                        <div class="order_book_content">
+                            <div class="table_head">
+                                <div class="sell_my_size">My size</div>
+                                <div class="sell_market_size">Market size</div>
+                                <div class="sell_price">Price (<span class='back_asset'></span>)</div>
+                                <div class="blank"></div>
+                                <div class="buy_price">Price (<span class='back_asset'></span>)</div>
+                                <div class="buy_market_size">Market size</div>  
+                                <div class="buy_my_size">My size</div>
+                            </div>
+                            <div class="table_content">
+                                <div class="wrapper">
+                                    <div id="order_book_loading" class="loader">Loading...</div>
+                                    <div id="div_asks_bids"></div>
+                                </div>
+                            </div>
+                            <div class="aggregation">
+                                <div class="column">
+                                    <div class="text">Aggregation</div>
+                                    <div class="value">1.00</div>
+                                </div>
+                                <div class="buttons">
+                                    <div class="aggregation_dec"></div>
+                                    <div class="aggregation_inc"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row trade_history_panel panel">
+                        <div class="trade_history_header">
+                            <div class="title">TRADE HISTORY</div>
+                            <div class="order_trade_tabs">
+                                <div class="order_tab">Order book</div>
+                                <div class="trade_tab">Trade history</div>
+                            </div>
+                        </div>
+                        <div class="trade_history">
+                            <div class="table_header">
+                                <div class="trade_size">Trade size</div>
+                                <div class="price">Price (<span class='back_asset'></span>)</div>
+                                <div class="time">Time</div>
+                            </div>
+                            <div class="table_content">
+                                    <div class="wrapper">
+                                    <div id="trade_loading" class="loader">Loading...</div>
+                                    <div id="div_trades"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row order_book_panel">
-                    <div class="order_book_header">
-                        <div class="title">ORDER BOOK</div>
-                        <div class="order_trade_tabs">
-                            <div class="order_tab">Order book</div>
-                            <div class="trade_tab">Trade history</div>
+            </div>
+
+            <div class="row bottom_panel">
+                <div class="open_orders_panel panel">
+                    <div class="open_orders_header">
+                        <div class="title">OPEN ORDERS</div>
+                        <div class="open_fill_tabs">
+                            <div class="open_tab">Open orders</div>
+                            <div class="fill_tab">Fills</div>
                         </div>
                     </div>
-                    <div class="order_book_content">
+                    <div class="open_orders_content">
                         <div class="table_head">
-                            <div class="sell_my_size">My size</div>
-                            <div class="sell_market_size">Market size</div>
-                            <div class="sell_price">Price (<span class='back_asset'></span>)</div>
-                            <div class="blank"></div>
-                            <div class="buy_price">Price (<span class='back_asset'></span>)</div>
-                            <div class="buy_market_size">Market size</div>  
-                            <div class="buy_my_size">My size</div>
+                            <div class="order_type">Type</div>
+                            <div class="size">Size</div>
+                            <div class="filled">Filled (<span class='front_asset'></span>)</div>
+                            <div class="price">Price (<span class='back_asset'></span>)</div>
+                            <div class="fee">Fee (<span class='back_asset'></span>)</div>
+                            <div class="time">Time</div>
+                            <div class="status">Status</div>
                         </div>
                         <div class="table_content">
                             <div class="wrapper">
-                                <div id="order_book_loading" class="loader">Loading...</div>
-                                <div id="div_asks_bids"></div>
-                            </div>
-                        </div>
-                        <div class="aggregation">
-                            <div class="column">
-                                <div class="text">Aggregation</div>
-                                <div class="value">1.00</div>
-                            </div>
-                            <div class="buttons">
-                                <div class="aggregation_dec"></div>
-                                <div class="aggregation_inc"></div>
+                                <div id="open_orders_loading" class="loader">Loading...</div>
+                                <div id="div_open_orders"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row trade_history_panel">
-                    <div class="trade_history_header">
-                        <div class="title">TRADE HISTORY</div>
-                        <div class="order_trade_tabs">
-                            <div class="order_tab">Order book</div>
-                            <div class="trade_tab">Trade history</div>
+                <div class="fills_panel panel">
+                    <div class="fills_header">
+                        <div class="title">FILLS</div>
+                        <div class="open_fill_tabs">
+                            <div class="open_tab">Open orders</div>
+                            <div class="fill_tab">Fills</div>
                         </div>
                     </div>
-                    <div class="trade_history">
-                        <div class="table_header">
-                            <div class="trade_size">Trade size</div>
+                    <div class="fills_content">
+                        <div class="table_head">
+                            <div class="size">Size(<span class='front_asset'></span>)</div>
                             <div class="price">Price (<span class='back_asset'></span>)</div>
+                            <div class="fee">Fee (<span class='back_asset'></span>)</div>
                             <div class="time">Time</div>
+                            <div class="status">Product</div>
                         </div>
                         <div class="table_content">
-                                <div class="wrapper">
-                                <div id="trade_loading" class="loader">Loading...</div>
-                                <div id="div_trades"></div>
+                            <div class="wrapper">
+                                <div id="fills_loading" class="loader">Loading...</div>
+                                <div id="div_fills"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row bottom_panel">
-            <div class="open_orders_panel">
-                <div class="open_orders_header">
-                    <div class="title">OPEN ORDERS</div>
-                    <div class="open_fill_tabs">
-                        <div class="open_tab">Open orders</div>
-                        <div class="fill_tab">Fills</div>
-                    </div>
-                </div>
-                <div class="open_orders_content">
-                    <div class="table_head">
-                        <div class="order_type">Type</div>
-                        <div class="size">Size</div>
-                        <div class="filled">Filled (<span class='front_asset'></span>)</div>
-                        <div class="price">Price (<span class='back_asset'></span>)</div>
-                        <div class="fee">Fee (<span class='back_asset'></span>)</div>
-                        <div class="time">Time</div>
-                        <div class="status">Status</div>
-                    </div>
-                    <div class="table_content">
-                        <div class="wrapper">
-                            <div id="open_orders_loading" class="loader">Loading...</div>
-                            <div id="div_open_orders"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="footer">
+                <div class="trade_btn">TRADE</div>
+                <div class="book_btn">BOOK</div>
+                <div class="charts_btn">CHARTS</div>
+                <div class="orders_btn">ORDERS</div>
             </div>
-            <div class="fills_panel">
-                <div class="fills_header">
-                    <div class="title">FILLS</div>
-                    <div class="open_fill_tabs">
-                        <div class="open_tab">Open orders</div>
-                        <div class="fill_tab">Fills</div>
-                    </div>
-                </div>
-                <div class="fills_content">
-                    <div class="table_head">
-                        <div class="size">Size(<span class='front_asset'></span>)</div>
-                        <div class="price">Price (<span class='back_asset'></span>)</div>
-                        <div class="fee">Fee (<span class='back_asset'></span>)</div>
-                        <div class="time">Time</div>
-                        <div class="status">Product</div>
-                    </div>
-                    <div class="table_content">
-                        <div class="wrapper">
-                            <div id="fills_loading" class="loader">Loading...</div>
-                            <div id="div_fills"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="trade_btn">TRADE</div>
-            <div class="book_btn">BOOK</div>
-            <div class="charts_btn">CHARTS</div>
-            <div class="orders_btn">ORDERS</div>
         </div>
     </div>
     <div class="etherdelta">
         <iframe src="http://localhost:6001"></iframe>
-    </div>        
+    </div>
     <div class='deposit_bg'>
         <div class='deposit_dlg'>
             <form role="form">

@@ -321,7 +321,7 @@ $(document).ready(function(){
             $( ".c-nav" ).animate({width: 0}, 300);
         } else {
             $( ".c-nav" ).animate({
-                width: 228,
+                width: $('.sidebar').width(),
             }, 300, function() {
                 $('.asset_section').css('display','block');
             });
@@ -537,17 +537,18 @@ function initial_css(){
         price_chart_panel_width = $('body').width();
         fills_content_height = $('body').height() - $('.open_orders_header').height() - $('.open_orders_panel .table_head').height() - 46 - $('.banner').height();
         bottom_panel_height = $('body').height() - 46;
+        // middle_panel_paddingleft = 0;
     } else{
         if ($('body').width() > 1473){
             order_book_panel_height = 347;
-            price_chart_panel_height = 696;
+            price_chart_panel_height = 694 + 23;
             price_chart_content_height = 618;
-            price_chart_panel_width = $('body').width() - 230 - 620 - 4;
+            price_chart_panel_width = $('body').width() - 230 - 620 - 4 - 100;
         } else {
             order_book_panel_height = 347;
             price_chart_panel_height = 347;
             price_chart_content_height = 590;
-            price_chart_panel_width = $('body').width() - 232;
+            price_chart_panel_width = $('body').width() - 70;
         }
         bottom_panel_height = $('body').height() - 696;
         cnav_height = $('body').height() - 40;
@@ -556,19 +557,21 @@ function initial_css(){
         trade_history_content_height = order_book_panel_height - 72;
         fills_content_height = bottom_panel_height - 72 - $('.banner').height();
         order_book_content_height = order_book_panel_height - 58;
+        // middle_panel_paddingleft = 40;
     }
     etherdelta_height = $('body').height() - 30;
-    $(".c-nav").css("height", cnav_height + 'px');
+    // $(".c-nav").css("height", cnav_height + 'px');
     $(".sidebar").css("height", sidebar_height + 'px');
     $(".middle_panel").css("width", middle_panel_width + 'px');
+    // $('.middle_panel').css('padding-left',middle_panel_paddingleft + 'px');
     $(".bottom_panel").css("width", middle_panel_width + 'px');
-    $(".bottom_panel").css("height", bottom_panel_height+ 'px');
+    // $(".bottom_panel").css("height", bottom_panel_height+ 'px');
     $(".price_chart_panel").css("width", price_chart_panel_width + 'px');
     $(".price_chart_panel").css("height", price_chart_panel_height + 'px');
     $(".price_chart_content").css('height',price_chart_content_height + 'px');
-    $(".fills_panel .table_content").css("height", fills_content_height + 'px');
+    $(".fills_panel .table_content").css("height", trade_history_content_height + 'px');
     $(".open_orders_panel").css("width", price_chart_panel_width + 'px');
-    $(".open_orders_panel .table_content").css("height", fills_content_height + 'px');
+    $(".open_orders_panel .table_content").css("height", trade_history_content_height + 'px');
     $(".order_book_panel").css('height',order_book_panel_height + 'px');
     $(".order_book_panel .table_content").css('height', order_book_content_height + 'px');
     $(".trade_history_panel").css('height',order_book_panel_height + 'px');
