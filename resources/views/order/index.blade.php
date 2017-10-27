@@ -561,13 +561,14 @@
                 </div>
             </div>
 
-            <div class="footer">
+            
+        </div>
+        <div class="footer">
                 <div class="trade_btn">TRADE</div>
                 <div class="book_btn">BOOK</div>
                 <div class="charts_btn">CHARTS</div>
                 <div class="orders_btn">ORDERS</div>
             </div>
-        </div>
     </div>
     <div class="etherdelta">
         <iframe src="http://localhost:6001"></iframe>

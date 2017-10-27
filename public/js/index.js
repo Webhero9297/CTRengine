@@ -566,15 +566,15 @@ function initial_css(){
     // $('.middle_panel').css('padding-left',middle_panel_paddingleft + 'px');
     $(".bottom_panel").css("width", middle_panel_width + 'px');
     // $(".bottom_panel").css("height", bottom_panel_height+ 'px');
-    $(".price_chart_panel").css("width", price_chart_panel_width + 'px');
-    $(".price_chart_panel").css("height", price_chart_panel_height + 'px');
+    // $(".price_chart_panel").css("width", price_chart_panel_width + 'px');
+    // $(".price_chart_panel").css("height", price_chart_panel_height + 'px');
     $(".price_chart_content").css('height',price_chart_content_height + 'px');
     $(".fills_panel .table_content").css("height", trade_history_content_height + 'px');
-    $(".open_orders_panel").css("width", price_chart_panel_width + 'px');
+    // $(".open_orders_panel").css("width", price_chart_panel_width + 'px');
     $(".open_orders_panel .table_content").css("height", trade_history_content_height + 'px');
-    $(".order_book_panel").css('height',order_book_panel_height + 'px');
+    // $(".order_book_panel").css('height',order_book_panel_height + 'px');
     $(".order_book_panel .table_content").css('height', order_book_content_height + 'px');
-    $(".trade_history_panel").css('height',order_book_panel_height + 'px');
+    // $(".trade_history_panel").css('height',order_book_panel_height + 'px');
     $(".trade_history_panel .table_content").css('height', trade_history_content_height + 'px');
 
     $('.etherdelta iframe').attr('width', '100%');
