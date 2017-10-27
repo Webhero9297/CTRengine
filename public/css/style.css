@@ -20,7 +20,7 @@
     color: hsla(206,8%,82%,.6);
 }
 .select_box_style {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0);
     color: #ced2d5;
     font-family: "opensans_bold";
     border: 0px;

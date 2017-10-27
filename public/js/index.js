@@ -536,7 +536,7 @@ function initial_css(){
         middle_panel_width = $('body').width();
         order_book_panel_height = $('body').height() - 46;
         order_book_content_height = order_book_panel_height - 77;
-        price_chart_content_height = 680;
+        price_chart_content_height = 768;
         price_chart_panel_height = order_book_panel_height;
         trade_history_content_height = order_book_panel_height - 72;
         price_chart_panel_width = $('body').width();
@@ -589,14 +589,11 @@ function initial_css(){
     $(".order_book_panel .table_content").css('height', order_book_content_height + 'px');
     $(".trade_history_panel .table_content").css('height', trade_history_content_height + 'px');
 
-
     $('.etherdelta iframe').attr('width', '100%');
     $('.etherdelta iframe').attr('height', etherdelta_height + 'px');
 
     if ($('.c-nav').width() > 0)
         $('.c-nav').css('width', $('.sidebar').width() + 'px');
-
-    
 }
 
 function hide_all(){

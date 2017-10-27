@@ -4,8 +4,8 @@ var chart = AmCharts.makeChart("chartdiv", {
   "categoryField": 'date',
   "valueAxes": [{
     "position": "right",
-    'axisColor': '#9da0a6',
-    'color': '#9da0a6',
+    'axisColor': 'white',
+    'color': 'white',
     'unit': '',
     'unitPosition': 'left',
   }],
@@ -18,7 +18,7 @@ var chart = AmCharts.makeChart("chartdiv", {
     "size": 10,
     "bold": false,
     "align": "right",
-    "color": '#9da0a6'
+    "color": 'white'
   }],
   "graphs": [{
     "id": "g1",
@@ -41,7 +41,7 @@ var chart = AmCharts.makeChart("chartdiv", {
   "chartCursor": {
     "valueLineEnabled": true,
     "valueLineBalloonEnabled": true,
-    "cursorColor": '#9da0a6',
+    "cursorColor": 'white',
     "color": '#000000',
     "cursorAlpha": 0.5,
     "zoomable": false
@@ -49,8 +49,8 @@ var chart = AmCharts.makeChart("chartdiv", {
   "categoryField": "date",
   "categoryAxis": {
     "labelColorField": "color",
-    'axisColor': '#9da0a6',
-    'color': '#9da0a6',
+    'axisColor': 'white',
+    'color': 'white', 
   },
   "dataProvider": [],
 });
@@ -216,7 +216,7 @@ var chart_2 = AmCharts.makeChart("chartdiv_2", {
     "size": 10,
     "bold": false,
     "align": "right",
-    "color": '#9da0a6'
+    "color": 'white'
   }],
   "graphs": [{
     "id": "bids",
@@ -259,16 +259,16 @@ var chart_2 = AmCharts.makeChart("chartdiv_2", {
   },
   "valueAxes": [{
     'position': 'left',
-    'axisColor': '#9da0a6',
-    'color': '#9da0a6'
+    'axisColor': 'white',
+    'color': 'white'  
   }],
   "categoryAxis": {
     "minHorizontalGap": 100,
     "startOnAxis": true,
     "showFirstLabel": false,
     "showLastLabel": false,
-    'axisColor': '#9da0a6',
-    'color': '#9da0a6',
+    'axisColor': 'white',
+    'color': 'white',
     'labelFunction': formatLabel
   },
 });
