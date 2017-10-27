@@ -310,23 +310,27 @@ function formatLabel(value, valueString, axis) {
   return valueString;
 }
 
-function change_style(sel_bigchart) {
-  if (sel_bigchart == 'price_chart') {
-    $('#chartdiv').css('display', 'block');
-    $('#chartdiv_2').css('display', 'none');
-    $('#sel_chart').css('display', 'block');
-    $('#sel_type').css('display', 'block');
-    $('#price_c').css('color', 'white');
-    $('#depth_c').css('color', '#968585');
+function change_style(sel) {
+  if (sel == 'price') {
+    chart_selection = 'price';
+    $('#chartContain').css('display', 'block');
+    $('#chartContain_2').css('display', 'none');
+
+    $("#price_c").css('color','#fff');
+    $("#price_c").css('border-bottom','1px solid #fff');
+    $("#depth_c").css('color','hsla(206,8%,82%,.6)');
+    $("#depth_c").css('border-bottom','hsla(206,8%,82%,.6)');
   }
   else {
-    $('#chartdiv').css('display', 'none');
-    $('#chartdiv_2').css('display', 'block');
-    $('#sel_chart').css('display', 'none');
-    $('#sel_type').css('display', 'none');
+    chart_selection = 'depth';
 
-    $('#price_c').css('color', '#968585');
-    $('#depth_c').css('color', 'white');
+    $('#chartContain').css('display', 'none');
+    $('#chartContain_2').css('display', 'block');
 
+    $("#price_c").css('color','hsla(206,8%,82%,.6)');
+    $("#price_c").css('border-bottom','hsla(206,8%,82%,.6)');
+    $("#depth_c").css('color','#fff');
+    $("#depth_c").css('border-bottom','1px solid #fff');
+    
   }
 }

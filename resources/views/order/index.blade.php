@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="{{ asset('./css/style.css') }}" type="text/css" media="all">
     <link rel="stylesheet" href="{{ asset('./css/cryptocoins.css') }}" type="text/css" media="all">
+    <script src="{{ asset('./js/variable.js') }}"></script>
     <script src="{{ asset('./js/javascript.js') }}"></script>
     
     <link rel="stylesheet" href="{{ asset('./css/index.css') }}">
@@ -210,7 +211,6 @@
                 </div>
             </div>
             <div class="row orderform">
-                <form class="form">
                     <div class="row margin">
                         <div class="navicon"><i class="fa fa-bars" aria-hidden="true"></i></div>
                         <div class="margin_txt">MARGIN TRADING</div>
@@ -218,6 +218,8 @@
                             <input type="checkbox" data-toggle="toggle" data-size="mini">
                         </div>
                     </div>
+                <form class="form">
+                    
                     <div class="logged_in">
                         <div class="txt_balance">Balance</div>
                         <div class="style1">
@@ -429,8 +431,8 @@
                                 </select>
 
                                 <div class = 'sel_bigchart' >
-                                    <font id = 'price_c' onclick = "change_style('price_chart');" style = 'cursor: pointer;' >Price Chart</font> | 
-                                    <font id = 'depth_c' onclick = "change_style('depth_chart');" style = 'cursor: pointer;'>Depth Chart</font>
+                                    <font id = 'price_c' onclick = "change_style('price');" style = 'cursor: pointer;' >Price Chart</font>&nbsp;&nbsp;
+                                    <font id = 'depth_c' onclick = "change_style('depth');" style = 'cursor: pointer;'>Depth Chart</font>
                                 </div>
 
                             </div>

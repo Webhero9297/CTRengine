@@ -22,15 +22,16 @@ html {
     height: 100%
 }
 body {
-    overflow:hidden;
     position: relative;
+    overflow:hidden;
     margin: 0;
     font-family: "opensans", sans-serif, "btcglyph";
     font-size: 11px;
     color: hsla(206,8%,82%,.75);
-    background-image:url("../images/blur-bg.jpg");
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: grayscale;
+    min-width: 320px;
+    background: url("../images/blur-bg.jpg") center center no-repeat;
 }
 ul {
     margin: 0;
@@ -63,6 +64,7 @@ input::-webkit-inner-spin-button {
 }
 #app, .content {
     height: 100%;
+    width: 100%;
 }
 .navbar-nav > li > a {
     padding: 7px 10px;
@@ -478,7 +480,7 @@ input::-webkit-inner-spin-button {
     color: white;
 }
 .c-nav {
-    background: rgb(28, 28, 28);
+    background: rgba(0,0,0,0.2);
     color: #fff;
     position: fixed;
     width: 0px;
@@ -908,11 +910,8 @@ input::-webkit-inner-spin-button {
     margin-left: 30px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.6);
-    background: url(../images/blur-bg-blurred.jpg);
-    background-position: -41px 0;
     overflow: hidden;
-    height: 347px;
+    height: 348px;
 }
 .order_book_panel .order_book_header,
 .trade_history_panel .trade_history_header {
@@ -961,7 +960,8 @@ input::-webkit-inner-spin-button {
 }
 .order_book_panel .table_head {
     display: flex;
-    padding: 6px 10px 12px 0;
+    padding: 6px 10px 6px 0;
+    min-height: 28px;
     border-bottom: 1px solid hsla(206,8%,82%,.15);
     font-family: "opensans_bold";
     text-align: right;
@@ -1073,15 +1073,13 @@ input::-webkit-inner-spin-button {
 }
 .trade_history_panel {
     width: 620px;
-    height: 312px;
+    height: 348px;
     position: relative;
     right: 0;
     margin-top: 23px;
     margin-left: 30px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.6);
-    background: url(../images/blur-bg-blurred.jpg);
     overflow: hidden;
     float:left;
 }
@@ -1089,7 +1087,7 @@ input::-webkit-inner-spin-button {
     display: flex;
     width: 100%;
     padding-right: 10px;
-    min-height: 29px;
+    height: 28px;
     padding: 6px 0;
     border-bottom: 1px solid hsla(0,0%,100%,.2);
     font-family: "opensans_bold";
@@ -1128,16 +1126,13 @@ input::-webkit-inner-spin-button {
 .price_chart_panel {
     position: relative;
     width: calc(100% - 720px);
-    height: 682px;
+    height: 718px;
     top: 0;
     bottom: 0;
     left: 0;
     margin: 0 0 0 0;
     display: flex;
     flex-direction: column;
-    /*background-color: rgba(0, 0, 0, 0.6);*/
-    background: url(../images/blur-bg-blurred.jpg);
-    background-position: -41px 0;
     overflow: hidden;
     float: left;
 }
@@ -1162,8 +1157,6 @@ input::-webkit-inner-spin-button {
     width: calc(100% - 720px);
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.6);
-    background: url(../images/blur-bg-blurred.jpg);
     overflow: hidden;
     float: left;
 }
@@ -1246,8 +1239,6 @@ input::-webkit-inner-spin-button {
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.6);
-    background: url(../images/blur-bg-blurred.jpg);
     overflow: hidden;
     float: left;
     margin-left: 30px;
@@ -1297,11 +1288,11 @@ input::-webkit-inner-spin-button {
     width: 20%;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 45px;
-  background-color: #f5f5f5;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
 }
 .trade_btn,
 .book_btn,
@@ -1318,7 +1309,7 @@ input::-webkit-inner-spin-button {
     border-right: 0px solid;
 }
 .footer {
-    background-color: #1d1d1d;
+    background-color: rgba(0,0,0,0.5);
     border-top: 1px solid hsla(0,0%,100%,.5);
     text-align: center;
     display: none;
@@ -1373,10 +1364,11 @@ input::-webkit-inner-spin-button {
 .panel {
     border-radius: 5px;
     box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+    background: rgba(255,255,255,0.1);
 }
 @media (max-width: 1473px) {
     .price_chart_panel {
-        height: 310px;
+        height: 348px;
     }
     .order_book_panel, 
     .trade_history_panel {
@@ -1413,6 +1405,12 @@ input::-webkit-inner-spin-button {
     .fills_panel {
         margin-left: 0;
     }
+    .sel_bigchart {
+        display: block;
+    }
+    #chartContain, #chartContain_2 {
+        height: 100%;
+    }
 }
 @media (max-width: 749px) {
     .middle_panel,
@@ -1422,9 +1420,14 @@ input::-webkit-inner-spin-button {
     .sidebar,
     .sidebar .margin,
     .sidebar .orderform,
-    .middle_panel,
-    .price_chart_panel {
+    .middle_panel {
         width: 100%;
+    }
+    .price_chart_panel {
+        width: calc(100% - 70px);
+    }
+    .price_chart_content {
+        height: 674px;
     }
     .footer {
         display: flex;
@@ -1433,26 +1436,35 @@ input::-webkit-inner-spin-button {
     .trade_info_bar {
         display: none;
     }
-    .price_chart_panel {
-        width: calc(100% - 70px);
-    }
     .order_book_panel,
     .trade_history_panel {
         margin-top: 0;
     }
     .panel {
-        height: 708px;
+        height: 726px;
     }
     .bottom_panel {
         margin-top: 0;
     }
+    .c-nav {
+        height: calc(100% - 66px - 43px - 44px);
+    }
+    .sel_bigchart {
+        display: none;
+    }
+    .asset_section {
+        padding: 10px 20px 0 20px;
+    }
+    #chartContain, #chartContain_2 {
+        height: 48%;
+    }
 }
 @media (max-width: 500px) {
     .panel {
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 20px);
     }
     .main_content {
-        padding: 0;
+        padding: 77px 10px 66px 10px;
     }
+    
 }
