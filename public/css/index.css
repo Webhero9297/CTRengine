@@ -1458,13 +1458,16 @@ option {
     #chartContain, #chartContain_2 {
         height: 48%;
     }
+    .main_content {
+        padding: 20px 30px 20px 40px;
+    }
 }
 @media (max-width: 500px) {
     .panel {
         width: calc(100% - 20px);
     }
     .main_content {
-        padding: 77px 10px 66px 10px;
+        padding: 20px 10px 20px 10px;
     }
     
 }
