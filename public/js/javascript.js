@@ -50,12 +50,12 @@ var chart = AmCharts.makeChart("chartdiv", {
   "categoryAxis": {
     "labelColorField": "color",
     'axisColor': 'white',
-    'color': 'white', 
+    'color': 'white',
   },
   "dataProvider": [],
 });
 
-function requestData(sel_type, graphType, axis_label, market_type) {
+function requestData(sel_type, graphType, axis_label, market_type, point) {
   d = new Date();
   var end = new Date(d.setTime(d.getTime() + (0 * 60 * 60 * 1000))); // now time
   var start = new Date(d.setTime(d.getTime() - (sel_type * 60 * 1000))); // before 5 hours
@@ -65,53 +65,50 @@ function requestData(sel_type, graphType, axis_label, market_type) {
   var startstring = start.toISOString();
   var url = 'https://api.gdax.com/products/' + market_type + '/candles?granularity=' + sel_type + '&start=' + startstring + '&end=' + endstring;
 
-  AmCharts.loadFile(url, {}, function (point) {
-    point = JSON.parse(point);
-    point.forEach(function (element, index) {
-      year = new Date(parseInt(point[index][0]) * 1000).getYear();
-      month = new Date(parseInt(point[index][0]) * 1000).getMonth() + 1;
-      day = new Date(parseInt(point[index][0]) * 1000).getDate();
-      hour = new Date(parseInt(point[index][0]) * 1000).getHours();
-      minutes = new Date(parseInt(point[index][0]) * 1000).getMinutes();
-      time = day + " " + hour + ":" + minutes;
+  point.forEach(function (element, index) {
+    year = new Date(parseInt(point[index][0]) * 1000).getYear();
+    month = new Date(parseInt(point[index][0]) * 1000).getMonth() + 1;
+    day = new Date(parseInt(point[index][0]) * 1000).getDate();
+    hour = new Date(parseInt(point[index][0]) * 1000).getHours();
+    minutes = new Date(parseInt(point[index][0]) * 1000).getMinutes();
+    time = day + " " + hour + ":" + minutes;
 
-      var itemPoint = {
-        "date": '' + time,
-        "open": point[index][3].toString(),
-        "high": point[index][2].toString(),
-        "low": point[index][1].toString(),
-        "close": point[index][4].toString()
-      }
-      if (dataProvider.length < 60) {
-        dataProvider.push(itemPoint);
-      }
-
-    }, this);
-
-    if (typeof graphType === 'undefined') {
-      graphType = 'candlestick';
+    var itemPoint = {
+      "date": '' + time,
+      "open": point[index][3].toString(),
+      "high": point[index][2].toString(),
+      "low": point[index][1].toString(),
+      "close": point[index][4].toString()
+    }
+    if (dataProvider.length < 60) {
+      dataProvider.push(itemPoint);
     }
 
-    if (graphType == 'line') {
-      chart.graphs[0].fillAlphas = 0.2;
-      chart.graphs[0].fillColors = ["#3d84d6", "#000000"];
-      chart.graphs[0].lineColor = "#3d84d6";
-    }
-    else {
-      chart.graphs[0].fillAlphas = 0.9;
-      chart.graphs[0].fillColors = "#31ff31";
-      chart.graphs[0].lineColor = '#31ff31';
+  }, this);
 
-    }
+  if (typeof graphType === 'undefined') {
+    graphType = 'candlestick';
+  }
 
-    dataProvider.reverse();
+  if (graphType == 'line') {
+    chart.graphs[0].fillAlphas = 0.2;
+    chart.graphs[0].fillColors = ["#3d84d6", "#000000"];
+    chart.graphs[0].lineColor = "#3d84d6";
+  }
+  else {
+    chart.graphs[0].fillAlphas = 0.9;
+    chart.graphs[0].fillColors = "#31ff31";
+    chart.graphs[0].lineColor = '#31ff31';
 
-    chart.graphs[0].type = graphType;
-    chart.allLabels[0].text = "(" + axis_label + ")";
-    chart.dataProvider = dataProvider;
-    chart.validateData();
-    $('#curtain').css('display', 'none');
-  });
+  }
+
+  dataProvider.reverse();
+
+  chart.graphs[0].type = graphType;
+  chart.allLabels[0].text = "(" + axis_label + ")";
+  chart.dataProvider = dataProvider;
+  chart.validateData();
+  $('#curtain').css('display', 'none');
 }
 
 function processData(list, type, desc) {
@@ -260,7 +257,7 @@ var chart_2 = AmCharts.makeChart("chartdiv_2", {
   "valueAxes": [{
     'position': 'left',
     'axisColor': 'white',
-    'color': 'white'  
+    'color': 'white'
   }],
   "categoryAxis": {
     "minHorizontalGap": 100,
@@ -316,10 +313,10 @@ function change_style(sel) {
     $('#chartContain').css('display', 'block');
     $('#chartContain_2').css('display', 'none');
 
-    $("#price_c").css('color','#fff');
-    $("#price_c").css('border-bottom','1px solid #fff');
-    $("#depth_c").css('color','hsla(206,8%,82%,.6)');
-    $("#depth_c").css('border-bottom','hsla(206,8%,82%,.6)');
+    $("#price_c").css('color', '#fff');
+    $("#price_c").css('border-bottom', '1px solid #fff');
+    $("#depth_c").css('color', 'hsla(206,8%,82%,.6)');
+    $("#depth_c").css('border-bottom', 'hsla(206,8%,82%,.6)');
   }
   else {
     chart_selection = 'depth';
@@ -327,10 +324,10 @@ function change_style(sel) {
     $('#chartContain').css('display', 'none');
     $('#chartContain_2').css('display', 'block');
 
-    $("#price_c").css('color','hsla(206,8%,82%,.6)');
-    $("#price_c").css('border-bottom','hsla(206,8%,82%,.6)');
-    $("#depth_c").css('color','#fff');
-    $("#depth_c").css('border-bottom','1px solid #fff');
-    
+    $("#price_c").css('color', 'hsla(206,8%,82%,.6)');
+    $("#price_c").css('border-bottom', 'hsla(206,8%,82%,.6)');
+    $("#depth_c").css('color', '#fff');
+    $("#depth_c").css('border-bottom', '1px solid #fff');
+
   }
 }

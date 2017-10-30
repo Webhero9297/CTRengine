@@ -164,7 +164,7 @@ input::-webkit-inner-spin-button {
 }
 .logo {
     float: left;
-    margin-top: 1px;
+    margin-top: 8px;
 }
 .logo img {
     width: 20px;
@@ -180,7 +180,7 @@ input::-webkit-inner-spin-button {
 .erc_toggle {
     float: left;
     margin-left: 20px;
-    
+    margin-top: 7px;    
 }
 #page {
     display: block;
@@ -622,7 +622,7 @@ input::-webkit-inner-spin-button {
     border: 1px solid hsla(0,0%,100%,.5);
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
+    width: 130px;
 }
 #withdraw_btn {
     float: right;
@@ -632,7 +632,7 @@ input::-webkit-inner-spin-button {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    width: 120px;
+    width: 130px;
 }
 #deposit_btn:hover,
 #withdraw_btn:hover {

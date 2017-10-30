@@ -49,15 +49,15 @@
         @endif
             <div class="spread_info_bar">    
                 <div class="bid">
-                    <span class="num">5780&nbsp;</span><span class="back_asset"></span>
+                    <span class="num">5780</span><span class="back_asset"></span>
                     <span class="descr">Bid</span>
                 </div>
                 <div class="spread">
-                    <span class="num">1&nbsp;</span><span class="back_asset"></span>
+                    <span class="num">1</span><span class="back_asset"></span>
                     <span class="descr">Spread</span>
                 </div>
                 <div class="ask">
-                    <span class="num">5781&nbsp;</span><span class="back_asset"></span>
+                    <span class="num">5781</span><span class="back_asset"></span>
                     <span class="descr">Ask</span>
                 </div>
             </div>
@@ -436,7 +436,7 @@
                                     <option value = 'candlestick'>Candle</option>
                                     <option value = 'line'>Line</option>
                                 </select>
-                                <select id = 'sel_type' class = 'select_box_style' >
+                                <select id = 'sel_hour' class = 'select_box_style' >
                                     <option value = 60>1m</option>
                                     <option value = 300>5m</option>
                                     <option value = 900>15m</option>
