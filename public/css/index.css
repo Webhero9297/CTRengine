@@ -159,6 +159,9 @@ input::-webkit-inner-spin-button {
     height: 66px;
     background: rgba(0,0,0,0.5);
 }
+.banner .row.section {
+    padding:15px 20px;
+}
 .logo {
     float: left;
     margin-top: 1px;
@@ -390,6 +393,21 @@ input::-webkit-inner-spin-button {
 
 /* trade_info_bar */
 
+.spread_info_bar {
+    float: right;
+    margin-right: 20px;
+}
+.bid,
+.spread,
+.ask {
+    float:left;
+    margin-right:20px;
+}
+.trade_info_bar {
+    height: 36px;
+    float: right;
+    margin-right: 20px;
+}
 .market_stat, 
 .day_volume {
     position: relative;
@@ -402,7 +420,13 @@ input::-webkit-inner-spin-button {
 .market_stat .num,
 .market_stat .back_asset,
 .day_volume .num,
-.day_volume .front_asset {
+.day_volume .front_asset,
+.bid .num,
+.bid .back_asset,
+.spread .num,
+.spread .back_asset,
+.ask .num,
+.ask .back_asset {
     display: inline-block;
     font-size: 15px;
     font-family: "opensans_bold";
@@ -412,7 +436,10 @@ input::-webkit-inner-spin-button {
 }
 .market_stat .descr,
 .price_up .descr,
-.day_volume .descr {
+.day_volume .descr,
+.bid .descr,
+.spread .descr,
+.ask .descr {
     display: block;
     font-size: 11px;
     font-weight: normal;
@@ -439,7 +466,7 @@ input::-webkit-inner-spin-button {
 /*------------ sidebar ------------*/
 
 .sidebar {
-    width: 230px;
+    width: 320px;
     float:left;
     padding-right: 2px;
     overflow: hidden;
@@ -535,7 +562,7 @@ input::-webkit-inner-spin-button {
     padding-top: 6px;
 }
 .asset_item {
-    padding: 6px 5px 20px 5px;
+    padding: 6px 20px 20px 20px;
     font-size: 11px;
     cursor: pointer;
 }
@@ -588,20 +615,24 @@ input::-webkit-inner-spin-button {
     font-size:12px;
 }
 #deposit_btn {
-    float:left;
-    padding: 8px 20px;
+    float: left;
+    padding: 8px 0;
+    text-align: center;
     color: hsla(0,0%,100%,.5);
     border: 1px solid hsla(0,0%,100%,.5);
     border-radius: 5px;
     cursor: pointer;
+    width: 120px;
 }
 #withdraw_btn {
-    float:right;
-    padding: 8px 20px;
+    float: right;
+    padding: 8px 0px;
     color: hsla(0,0%,100%,.5);
     border: 1px solid hsla(0,0%,100%,.5);
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    width: 120px;
 }
 #deposit_btn:hover,
 #withdraw_btn:hover {
@@ -907,7 +938,7 @@ input::-webkit-inner-spin-button {
     top: 0;
     bottom: 0;
     left: 0;
-    margin-left: 30px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -981,7 +1012,7 @@ input::-webkit-inner-spin-button {
     overflow: auto;
 }
 .order_book_panel .aggregation {
-    display: flex;
+    display: none;
     flex-shrink: 0;
     align-items: center;
     padding: 3px 0;
@@ -1076,8 +1107,8 @@ input::-webkit-inner-spin-button {
     height: 348px;
     position: relative;
     right: 0;
-    margin-top: 23px;
-    margin-left: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -1125,8 +1156,8 @@ input::-webkit-inner-spin-button {
 }
 .price_chart_panel {
     position: relative;
-    width: calc(100% - 720px);
-    height: 718px;
+    width: calc(100% - 770px);
+    height: 716px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -1154,7 +1185,7 @@ input::-webkit-inner-spin-button {
     color: #fff;
 }
 .open_orders_panel {
-    width: calc(100% - 720px);
+    width: calc(100% - 770px);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -1241,7 +1272,7 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     overflow: hidden;
     float: left;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .fills_panel .fills_header {
     display: flex;
@@ -1287,13 +1318,6 @@ input::-webkit-inner-spin-button {
 .fills_panel .fills_content .status {
     width: 20%;
 }
-.footer {
-    background-color: rgba(0,0,0,0.5);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 45px;
-}
 .trade_btn,
 .book_btn,
 .charts_btn,
@@ -1309,7 +1333,11 @@ input::-webkit-inner-spin-button {
     border-right: 0px solid;
 }
 .footer {
-    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background-color: rgba(0,0,0,0.5);
     border-top: 1px solid hsla(0,0%,100%,.5);
     text-align: center;
     display: none;
@@ -1356,10 +1384,10 @@ input::-webkit-inner-spin-button {
 .main_content {
     height: calc(100% - 66px);
     overflow: scroll;
-    padding: 77px 30px 66px 40px;
+    padding: 40px 20px 40px 20px;
 }
 .bottom_panel {
-    margin-top: 23px;
+    margin-top: 20px;
 }
 .panel {
     border-radius: 5px;
@@ -1369,6 +1397,10 @@ input::-webkit-inner-spin-button {
 option {
         background: #23353b;
 }
+.panel {
+    margin-bottom: 0px;
+}
+
 @media (max-width: 1473px) {
     .price_chart_panel {
         height: 348px;
@@ -1399,7 +1431,7 @@ option {
         display: flex;
     }
     .panel {
-        width: calc(100% - 70px);
+        width: calc(100% - 130px);
     }
     .order_book_panel,
     .trade_history_panel {
@@ -1415,6 +1447,11 @@ option {
         height: 100%;
     }
 }
+@media (max-width: 1000px) {
+    .spread_info_bar {
+        display: none;
+    }
+}
 @media (max-width: 749px) {
     .middle_panel,
     .bottom_panel {
@@ -1425,9 +1462,6 @@ option {
     .sidebar .orderform,
     .middle_panel {
         width: 100%;
-    }
-    .price_chart_panel {
-        width: calc(100% - 70px);
     }
     .footer {
         display: flex;
@@ -1442,6 +1476,7 @@ option {
     }
     .panel {
         height: 826px;
+        width: calc(100% - 40px);
     }
     .bottom_panel {
         margin-top: 0;
@@ -1459,7 +1494,7 @@ option {
         height: 48%;
     }
     .main_content {
-        padding: 20px 30px 20px 40px;
+        padding: 30px 20px 30px 20px;
     }
 }
 @media (max-width: 500px) {

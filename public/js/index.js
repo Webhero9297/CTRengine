@@ -1,10 +1,14 @@
 
 $(document).ready(function(){
-    
+
     initial_css();
     set_asset();  
     get_tradeprice();
 
+    $('.erc_toggle .btn.btn-primary.btn-xs.toggle-on').html('DECENTRALIZED TRADING');    
+    $('.erc_toggle .btn.btn-default.btn-xs.active.toggle-off').html('CENTRALIZED TRADING');    
+    $('.erc_toggle .toggle.btn.btn-xs.btn-default').css('width', '175px');
+    
     $( ".header .product_selection h4" ).click(function(){
             $(".header .marketinfo .menu_entry").css('color','rgba(81,141,202,.8)');
         }
@@ -514,11 +518,9 @@ function doOnERC20Toggle() {
     if ($('#toggle_erc20').is(':checked')) {
         $('.content').css('display', 'none');
         $('.etherdelta').css('display', 'block');
-        $('.erc_txt').html("CENTRALIZED TRADING");
     } else {
         $('.content').css('display', 'block');
         $('.etherdelta').css('display', 'none');
-        $('.erc_txt').html("DECENTRALIZED TRADING");
     }
 }
 
@@ -594,6 +596,8 @@ function initial_css(){
 
     if ($('.c-nav').width() > 0)
         $('.c-nav').css('width', $('.sidebar').width() + 'px');
+
+    
 }
 
 function hide_all(){
