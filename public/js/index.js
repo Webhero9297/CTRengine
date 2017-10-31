@@ -625,7 +625,7 @@ function set_asset(){
     $('.front_asset').html(front_asset);
     $('.back_asset').html(back_asset);
 
-    //showChart();
+    showPriceChart();
 }
 
 function set_reverse_asset(){

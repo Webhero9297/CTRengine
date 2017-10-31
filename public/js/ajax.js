@@ -25,14 +25,14 @@ $(document).ready(function () {
     // }, 3000);
     
     showData();
-    //showChart();
+    showPriceChart();
 
-    $('#sel_type').change(function(){	
-        showChart();
+    $('#sel_hour').change(function(){	
+        showPriceChart();
     });
 
     $('#sel_chart').change(function(){	
-        showChart();
+        showPriceChart();
     });
 });
 
@@ -44,23 +44,23 @@ function showData() {
         putOpenOrders(data.openorder);
         putFills(data.fills);
         putBannerInfo(data.orderbook);
+
+        var market_type = front_asset + '-' + back_asset;
+        showDepthChart(back_asset, market_type, data.depthchart);  //depth chart
     });
 }
 
-function showChart() {
-    $.get('http://172.216.1.99:6003/gettradedata/' + front_asset + '-' + back_asset, function (resp) {
-        var data = typeof resp == 'string' ? JSON.parse(resp) : resp;
-        putChart(data.pricechart, data.depthchart);
-    });
-}
-
-function putChart(price_data, depth_data) {
-    var sel_graphType = $('#sel_chart').val();
+function showPriceChart() {
     var sel_hour = $('#sel_hour').val();
-    var market_type = front_asset + '-' + back_asset;
+    $.get('http://172.216.1.99:6003/getpricechartdata/' + front_asset + '-' + back_asset + '?time_scale=' + sel_hour , function (resp) {
+        var data = typeof resp == 'string' ? JSON.parse(resp) : resp;
+        var sel_graphType = $('#sel_chart').val();
+        var sel_hour = $('#sel_hour').val();
+        var market_type = front_asset + '-' + back_asset;
 
-    requestData(sel_hour, sel_graphType, back_asset, market_type, price_data);  //price chart
-    draw_chart_order(back_asset, market_type, depth_data);  //depth chart
+        console.log(data);
+        requestData(sel_hour, sel_graphType, back_asset, market_type, data);  //price chart
+    });
 }
 
 function putBannerInfo(data) {
@@ -107,7 +107,7 @@ function putOrderData(data) {
 <div style="text-align:right;width:18%;float:left;"><span style="color:#fd2d2f;">' + ask.limit_price + '</span></div>\n\
 <div style="width:4%;float:left;">&nbsp;</div>\n\
 <div style="text-align:left;width:18%;float:left;"><span style="color:#31ff31;">' + bid.limit_price + '</span></div>\n\
-<div style="text-align:right;width:13%;float:left;padding-right:2%"><span style="color:white;">' + bid.size_main + '</span><span style="color:#5c5c5c">' + bid.size_zero + '</span></div>\n\
+<div style="text-align:right;width:15%;float:left;padding-right:4%"><span style="color:white;">' + bid.size_main + '</span><span style="color:#5c5c5c">' + bid.size_zero + '</span></div>\n\
 <div style="text-align:center;width:15%;float:left;"><span style="color:white;">-</span></div></td></tr>';
     }
     
