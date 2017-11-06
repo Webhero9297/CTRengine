@@ -514,13 +514,7 @@ function init_asset_balance() {
 }
 
 function doOnERC20Toggle() {
-    if ($('#toggle_erc20').is(':checked')) {
-        $('.content').css('display', 'none');
-        $('.etherdelta').css('display', 'block');
-    } else {
-        $('.content').css('display', 'block');
-        $('.etherdelta').css('display', 'none');
-    }
+    location.href = "http://172.216.1.89";
 }
 
 function toDefaultColor(){
@@ -625,7 +619,7 @@ function set_asset(){
     $('.front_asset').html(front_asset);
     $('.back_asset').html(back_asset);
 
-    //showChart();
+    showPriceChart();
 }
 
 function set_reverse_asset(){
