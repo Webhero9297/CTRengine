@@ -15,6 +15,7 @@ addEventListener('DOMContentLoaded', function () {
 });
 
 $(document).ready(function () {
+<<<<<<< HEAD
     var intervalId = window.setInterval(function () {
         interval_num_order_book++;
         interval_num_trade++;
@@ -23,6 +24,19 @@ $(document).ready(function () {
         showData();
         showPriceChart();    
     }, 3000);
+=======
+    // var intervalId = window.setInterval(function () {
+    //     interval_num_order_book++;
+    //     interval_num_trade++;
+    //     interval_num_open_orders++;
+    //     interval_num_fills++;
+    //     showData();
+    //     getChart();
+    // }, 3000);
+    
+    showData();
+    showPriceChart();
+>>>>>>> origin/master
 
     $('#sel_hour').change(function(){	
         showPriceChart();
@@ -55,6 +69,10 @@ function showPriceChart() {
         var sel_hour = $('#sel_hour').val();
         var market_type = front_asset + '-' + back_asset;
 
+<<<<<<< HEAD
+=======
+        console.log(data);
+>>>>>>> origin/master
         requestData(sel_hour, sel_graphType, back_asset, market_type, data);  //price chart
     });
 }
